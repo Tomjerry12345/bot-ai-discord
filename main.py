@@ -4,8 +4,9 @@ import json
 import os
 from datetime import datetime
 import aiohttp
-from dotenv import load_dotenv
-import sys
+import asyncio# ============================================
+# ENVIRONMENT SETUP - Replit Compatible
+# ============================================
 
 # Coba load dari .env (untuk local dev)
 try:
@@ -19,16 +20,19 @@ except ImportError:
 DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN') or os.getenv('DISCORD_TOKEN')
 GROQ_API_KEY = os.environ.get('GROQ_API_KEY') or os.getenv('GROQ_API_KEY')
 
+# CLEAN API KEY (remove whitespace)
+if GROQ_API_KEY:
+    GROQ_API_KEY = GROQ_API_KEY.strip()
+    print(f"✅ GROQ_API_KEY loaded: {GROQ_API_KEY[:10]}...{GROQ_API_KEY[-4:]}")
+    print(f"📏 API Key length: {len(GROQ_API_KEY)} chars")
+else:
+    print("⚠️ GROQ_API_KEY tidak ditemukan!")
+    print("💡 Bot akan jalan tapi AI tidak akan aktif")
+
 if not DISCORD_TOKEN:
     print("❌ DISCORD_TOKEN tidak ditemukan di environment!")
     print("💡 Set di Replit Secrets atau .env file")
     sys.exit(1)
-
-if not GROQ_API_KEY:
-    print("⚠️ GROQ_API_KEY tidak ditemukan!")
-    print("💡 Bot akan jalan tapi AI tidak akan aktif")
-else:
-    print(f"✅ GROQ_API_KEY loaded: {GROQ_API_KEY[:10]}...{GROQ_API_KEY[-4:]}")
 
 # Bot setup
 intents = discord.Intents.default()
@@ -182,21 +186,32 @@ def search_knowledge(query):
 
 async def get_ai_response(question, all_data):
     """AI response dengan batasan ketat untuk Replit"""
-    groq_api_key = os.environ.get("GROQ_API_KEY")
+    # Use global GROQ_API_KEY
+    groq_api_key = GROQ_API_KEY
     
     if not groq_api_key:
         if all_data:
             return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
         return "⚠️ GROQ_API_KEY belum diset!"
     
+    # CLEAN API KEY - hapus whitespace tersembunyi
+    groq_api_key = groq_api_key.strip().replace('\n', '').replace('\r', '')
+    
+    # Validate API key format
+    if len(groq_api_key) < 40:
+        print(f"⚠️ API key terlalu pendek: {len(groq_api_key)} chars")
+        if all_data:
+            return f"🤖 Dari database:\n\n{all_data[0]['answer']}\n\n_⚠️ API key invalid_"
+        return "⚠️ API key tidak valid!"
+    
     # LIMIT data yang dikirim (penting untuk Replit!)
-    max_items = 20  # Maksimal 20 Q&A
+    max_items = 15  # Kurangi jadi 15 untuk lebih stabil
     limited_data = all_data[:max_items]
     
     # Build context dengan batasan karakter
     context_parts = []
     total_chars = 0
-    max_context_chars = 2500  # Batasan ketat untuk Replit
+    max_context_chars = 2000  # Kurangi jadi 2000
     
     for item in limited_data:
         entry = f"Q: {item['question']}\nA: {item['answer']}"
@@ -209,7 +224,7 @@ async def get_ai_response(question, all_data):
     
     try:
         # Timeout ketat untuk Replit
-        timeout = aiohttp.ClientTimeout(total=12)
+        timeout = aiohttp.ClientTimeout(total=15)
         
         async with aiohttp.ClientSession(timeout=timeout) as session:
             headers = {
@@ -217,12 +232,13 @@ async def get_ai_response(question, all_data):
                 "Content-Type": "application/json"
             }
             
+            # Coba model yang lebih stabil dulu
             data = {
-                "model": "llama-3.3-70b-versatile",
+                "model": "llama-3.3-70b-versatile",  # GANTI MODEL
                 "messages": [
                     {
                         "role": "system",
-                        "content": "Kamu AI helper Toram Online. Jawab singkat, jelas, dan to the point. Maksimal 400 kata."
+                        "content": "Kamu AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata."
                     },
                     {
                         "role": "user", 
@@ -234,8 +250,8 @@ PERTANYAAN: {question}
 Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
                     }
                 ],
-                "temperature": 0.2,  # Lebih rendah = lebih konsisten
-                "max_tokens": 800,   # Dikurangi untuk response cepat
+                "temperature": 0.2,
+                "max_tokens": 600,  # Kurangi jadi 600
                 "top_p": 0.9
             }
             
@@ -244,21 +260,30 @@ Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
                 headers=headers,
                 json=data
             ) as resp:
+                # Debug log
+                print(f"📡 Groq API Response Status: {resp.status}")
+                
                 if resp.status == 200:
                     result = await resp.json()
                     answer = result['choices'][0]['message']['content']
-                    # Truncate jika terlalu panjang
                     return answer[:2000] if len(answer) > 2000 else answer
                     
-                elif resp.status == 429:  # Rate limit
+                elif resp.status == 401:
+                    error_text = await resp.text()
+                    print(f"🔑 Auth Error: {error_text}")
+                    if limited_data:
+                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_🔑 API key bermasalah, gunakan data lokal_"
+                    return "🔑 API key tidak valid! Cek di Groq Console."
+                    
+                elif resp.status == 429:
                     print("⚠️ Rate limit Groq API")
                     if limited_data:
-                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ API sedang sibuk_"
+                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ API rate limit_"
                     return "⚠️ API rate limit, coba lagi sebentar!"
                     
                 else:
                     error_text = await resp.text()
-                    print(f"❌ API Error {resp.status}: {error_text[:200]}")
+                    print(f"❌ API Error {resp.status}: {error_text[:300]}")
                     if limited_data:
                         return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}"
                     return f"❌ API Error ({resp.status})"
@@ -266,17 +291,17 @@ Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
     except asyncio.TimeoutError:
         print("⏱️ Timeout - Replit connection slow")
         if limited_data:
-            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⏱️ Koneksi lambat, gunakan data lokal_"
-        return "⏱️ Timeout! Coba lagi atau gunakan !list untuk lihat data."
+            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⏱️ Koneksi lambat_"
+        return "⏱️ Timeout! Coba lagi."
         
     except aiohttp.ClientError as e:
         print(f"❌ Network error: {str(e)}")
         if limited_data:
             return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_❌ Network error_"
-        return "❌ Koneksi bermasalah, coba lagi!"
+        return "❌ Koneksi bermasalah!"
         
     except Exception as e:
-        print(f"❌ Unexpected error: {str(e)}")
+        print(f"❌ Unexpected error: {type(e).__name__}: {str(e)}")
         if limited_data:
             return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ Fallback mode_"
         return f"❌ Error: {str(e)[:100]}"
@@ -598,6 +623,44 @@ async def help_command(ctx):
     
     embed.set_footer(text="Powered by Groq AI")
     await ctx.reply(embed=embed)
+
+@bot.command(name='testapi')
+@commands.has_permissions(administrator=True)
+async def test_api(ctx):
+    """Test Groq API connection"""
+    await ctx.reply("🔍 Testing Groq API...")
+    
+    if not GROQ_API_KEY:
+        await ctx.reply("❌ GROQ_API_KEY tidak ditemukan!")
+        return
+    
+    try:
+        timeout = aiohttp.ClientTimeout(total=10)
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            headers = {
+                "Authorization": f"Bearer {GROQ_API_KEY.strip()}",
+                "Content-Type": "application/json"
+            }
+            
+            data = {
+                "model": "llama-3.1-70b-versatile",
+                "messages": [{"role": "user", "content": "Say: OK"}],
+                "max_tokens": 5
+            }
+            
+            async with session.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers=headers,
+                json=data
+            ) as resp:
+                if resp.status == 200:
+                    result = await resp.json()
+                    await ctx.reply(f"✅ API Working!\n```{result['choices'][0]['message']['content']}```")
+                else:
+                    error = await resp.text()
+                    await ctx.reply(f"❌ API Error {resp.status}:\n```{error[:500]}```")
+    except Exception as e:
+        await ctx.reply(f"❌ Connection Error:\n```{str(e)[:500]}```")
 
 # ============================================
 # BOT EVENTS

@@ -33,64 +33,48 @@ def save_knowledge(knowledge):
 knowledge_base = load_knowledge()
 
 # ============================================
-# SMART SEARCH
+# SIMPLE SEARCH - NO FILTERING
 # ============================================
 
-def search_knowledge_smart(query, return_raw=True):
-    """Universal search untuk semua kategori"""
+def search_knowledge(query):
+    """Simple search - kirim semua data ke AI, biar AI yang filter"""
     results = []
     query_lower = query.lower()
     
-    # Filter noise words
-    noise_words = ['list', 'semua', 'all', 'kode', 'ada', 'apa', 'saja', 'cari', 'mana', 'daftar']
-    keywords = [word for word in query_lower.split() if word not in noise_words]
-    
-    if not keywords:
-        keywords = query_lower.split()
-    
-    # Cari semua matching results
+    # Cari semua yang ada keyword-nya (minimal match)
     for qa in knowledge_base["qa_pairs"]:
         question_lower = qa["question"].lower()
         answer_lower = qa["answer"].lower()
         
-        # Hitung score dari pertanyaan DAN jawaban
-        question_score = sum(1 for kw in keywords if kw in question_lower)
-        answer_score = sum(1 for kw in keywords if kw in answer_lower)
-        
-        # Total score (prioritaskan match di pertanyaan)
-        total_score = (question_score * 2) + answer_score
-        
-        if total_score > 0:
+        # Check if ANY word from query exists
+        if any(word in question_lower or word in answer_lower 
+               for word in query_lower.split()):
             results.append({
                 "question": qa["question"],
                 "answer": qa["answer"],
-                "images": qa.get("images", []),
-                "score": total_score
+                "images": qa.get("images", [])
             })
     
-    # Sort by relevance
-    results.sort(key=lambda x: x["score"], reverse=True)
-    
-    return results if return_raw else results[:10]
+    return results
 
 # ============================================
-# AI RESPONSE - SIMPLIFIED
+# AI RESPONSE - FULL CONTROL TO AI
 # ============================================
 
-async def get_ai_response(question, context_data):
-    """Call Groq AI - AI yang tentukan sendiri konteks dan jawabannya"""
+async def get_ai_response(question, all_data):
+    """AI yang tentukan context, filter, dan format sendiri"""
     groq_api_key = os.environ.get("GROQ_API_KEY")
     
     if not groq_api_key:
-        if context_data:
-            return f"🤖 Dari database:\n\n{context_data[0]['answer']}"
+        if all_data:
+            return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
         return "⚠️ GROQ_API_KEY belum diset!"
     
-    # Kirim semua data mentah ke AI, biar AI yang analisis
+    # Kirim SEMUA data mentah, tanpa filter apapun
     context_text = "\n\n".join([
         f"Q: {item['question']}\nA: {item['answer']}"
-        for item in context_data[:20]  # Kirim top 20 results
-    ]) if context_data else "Tidak ada data"
+        for item in all_data
+    ]) if all_data else "Database kosong"
     
     try:
         async with aiohttp.ClientSession() as session:
@@ -104,12 +88,19 @@ async def get_ai_response(question, context_data):
                 "messages": [
                     {
                         "role": "user", 
-                        "content": f"""Database info:
+                        "content": f"""Kamu AI helper game Toram Online.
+
+DATABASE:
 {context_text}
 
-Pertanyaan: {question}
+PERTANYAAN USER: {question}
 
-Jawab dengan natural, singkat, dan relevan. Jika user minta list tanpa detail tertentu (misal: "jangan stat"), skip bagian itu."""
+INSTRUKSI:
+- Analisis sendiri data mana yang relevan
+- Filter sendiri info yang perlu ditampilkan
+- Format output sesuai kebutuhan (list/detail/singkat)
+- Jika user minta "tanpa X" atau "jangan Y", skip bagian itu
+- Jawab natural dan to the point"""
                     }
                 ],
                 "temperature": 0.3,
@@ -125,12 +116,12 @@ Jawab dengan natural, singkat, dan relevan. Jika user minta list tanpa detail te
                     result = await resp.json()
                     return result['choices'][0]['message']['content']
                 else:
-                    if context_data:
-                        return f"🤖 Dari database:\n\n{context_data[0]['answer']}"
+                    if all_data:
+                        return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
                     return "❌ Error API"
     except Exception as e:
-        if context_data:
-            return f"🤖 Dari database:\n\n{context_data[0]['answer']}\n\n_(AI offline)_"
+        if all_data:
+            return f"🤖 Dari database:\n\n{all_data[0]['answer']}\n\n_(AI offline)_"
         return f"❌ Error: {str(e)}"
 
 # ============================================
@@ -188,18 +179,18 @@ async def import_txt(ctx, filename: str = "data_qa.txt"):
 async def ask_ai(ctx, *, question):
     """Tanya ke AI"""
     async with ctx.typing():
-        # Search database
-        results = search_knowledge_smart(question, return_raw=True)
+        # Get all matching data (no filtering)
+        all_data = search_knowledge(question)
         
         # Collect images
         images_found = []
-        if results:
-            for r in results[:15]:
-                if 'images' in r and r['images']:
-                    images_found.extend(r['images'])
+        if all_data:
+            for item in all_data:
+                if 'images' in item and item['images']:
+                    images_found.extend(item['images'])
         
-        # Let AI process everything
-        response = await get_ai_response(question, results)
+        # AI process everything
+        response = await get_ai_response(question, all_data)
         
         # Create embed
         embed = discord.Embed(
@@ -209,7 +200,7 @@ async def ask_ai(ctx, *, question):
             timestamp=datetime.now()
         )
         
-        # Add images to embed
+        # Add images
         if images_found:
             embed.set_image(url=images_found[0])
             if len(images_found) > 1:
@@ -258,7 +249,7 @@ async def teach_bot(ctx, *, content):
     image_urls = []
     if ctx.message.attachments:
         for attachment in ctx.message.attachments:
-            if attachment.content_type.startswith('image/'):
+            if attachment.content_type and attachment.content_type.startswith('image/'):
                 image_urls.append(attachment.url)
     
     # Simpan ke database
@@ -274,11 +265,16 @@ async def teach_bot(ctx, *, content):
     # Embed response
     embed = discord.Embed(title="✅ Berhasil Dipelajari!", color=0x57F287)
     embed.add_field(name="❓ Pertanyaan", value=question, inline=False)
-    embed.add_field(name="💡 Jawaban", value=answer, inline=False)
     
+    # Tampilkan jawaban dengan link gambar
     if image_urls:
-        embed.add_field(name="🖼️ Gambar", value=f"{len(image_urls)} gambar tersimpan", inline=False)
+        answer_with_images = answer
+        for i, img_url in enumerate(image_urls, 1):
+            answer_with_images += f"\n\n🖼️ **Gambar {i}:** [Lihat]({img_url})"
+        embed.add_field(name="💡 Jawaban", value=answer_with_images, inline=False)
         embed.set_image(url=image_urls[0])
+    else:
+        embed.add_field(name="💡 Jawaban", value=answer, inline=False)
     
     await ctx.reply(embed=embed)
 

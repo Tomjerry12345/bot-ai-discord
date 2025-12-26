@@ -36,33 +36,132 @@ knowledge_base = load_knowledge()
 # SIMPLE SEARCH - NO FILTERING
 # ============================================
 
-def search_knowledge(query):
-    """Simple search - kirim semua data ke AI, biar AI yang filter"""
-    results = []
-    query_lower = query.lower()
+# def search_knowledge(query):
+#     """Simple search - kirim semua data ke AI, biar AI yang filter"""
+#     results = []
+#     query_lower = query.lower()
     
-    # Cari semua yang ada keyword-nya (minimal match)
+#     # Cari semua yang ada keyword-nya (minimal match)
+#     for qa in knowledge_base["qa_pairs"]:
+#         question_lower = qa["question"].lower()
+#         answer_lower = qa["answer"].lower()
+        
+#         # Check if ANY word from query exists
+#         if any(word in question_lower or word in answer_lower 
+#                for word in query_lower.split()):
+#             results.append({
+#                 "question": qa["question"],
+#                 "answer": qa["answer"],
+#                 "images": qa.get("images", [])
+#             })
+    
+#     return results
+
+def search_knowledge(query):
+    """Search dengan scoring dan limit hasil"""
+    query_lower = query.lower()
+    query_words = [w for w in query_lower.split() if len(w) > 2]  # Skip kata pendek
+    
+    if not query_words:
+        return knowledge_base["qa_pairs"][:20]  # Fallback
+    
+    scored_results = []
+    
     for qa in knowledge_base["qa_pairs"]:
         question_lower = qa["question"].lower()
         answer_lower = qa["answer"].lower()
         
-        # Check if ANY word from query exists
-        if any(word in question_lower or word in answer_lower 
-               for word in query_lower.split()):
-            results.append({
-                "question": qa["question"],
-                "answer": qa["answer"],
-                "images": qa.get("images", [])
-            })
+        score = 0
+        # Exact match = prioritas tertinggi
+        if query_lower in question_lower:
+            score += 10
+        if query_lower in answer_lower:
+            score += 5
+            
+        # Word match
+        for word in query_words:
+            if word in question_lower:
+                score += 3
+            if word in answer_lower:
+                score += 1
+        
+        if score > 0:
+            scored_results.append((score, qa))
     
-    return results
+    # Sort dan limit ke 25 hasil terbaik (Replit friendly)
+    scored_results.sort(reverse=True, key=lambda x: x[0])
+    return [item[1] for item in scored_results[:25]]
+
 
 # ============================================
 # AI RESPONSE - FULL CONTROL TO AI
 # ============================================
 
+# async def get_ai_response(question, all_data):
+#     """AI yang tentukan context, filter, dan format sendiri"""
+#     groq_api_key = os.environ.get("GROQ_API_KEY")
+    
+#     if not groq_api_key:
+#         if all_data:
+#             return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+#         return "⚠️ GROQ_API_KEY belum diset!"
+    
+#     # Kirim SEMUA data mentah, tanpa filter apapun
+#     context_text = "\n\n".join([
+#         f"Q: {item['question']}\nA: {item['answer']}"
+#         for item in all_data
+#     ]) if all_data else "Database kosong"
+    
+#     try:
+#         async with aiohttp.ClientSession() as session:
+#             headers = {
+#                 "Authorization": f"Bearer {groq_api_key}",
+#                 "Content-Type": "application/json"
+#             }
+            
+#             data = {
+#                 "model": "llama-3.3-70b-versatile",
+#                 "messages": [
+#                     {
+#                         "role": "user", 
+#                         "content": f"""Kamu AI helper game Toram Online.
+
+# DATABASE:
+# {context_text}
+
+# PERTANYAAN USER: {question}
+
+# INSTRUKSI:
+# - Analisis sendiri data mana yang relevan
+# - Filter sendiri info yang perlu ditampilkan
+# - Format output sesuai kebutuhan (list/detail/singkat)
+# - Jika user minta "tanpa X" atau "jangan Y", skip bagian itu
+# - Jawab natural dan to the point"""
+#                     }
+#                 ],
+#                 "temperature": 0.3,
+#                 "max_tokens": 2000
+#             }
+            
+#             async with session.post(
+#                 "https://api.groq.com/openai/v1/chat/completions",
+#                 headers=headers,
+#                 json=data
+#             ) as resp:
+#                 if resp.status == 200:
+#                     result = await resp.json()
+#                     return result['choices'][0]['message']['content']
+#                 else:
+#                     if all_data:
+#                         return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+#                     return "❌ Error API"
+#     except Exception as e:
+#         if all_data:
+#             return f"🤖 Dari database:\n\n{all_data[0]['answer']}\n\n_(AI offline)_"
+#         return f"❌ Error: {str(e)}"
+
 async def get_ai_response(question, all_data):
-    """AI yang tentukan context, filter, dan format sendiri"""
+    """AI response dengan batasan ketat untuk Replit"""
     groq_api_key = os.environ.get("GROQ_API_KEY")
     
     if not groq_api_key:
@@ -70,14 +169,29 @@ async def get_ai_response(question, all_data):
             return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
         return "⚠️ GROQ_API_KEY belum diset!"
     
-    # Kirim SEMUA data mentah, tanpa filter apapun
-    context_text = "\n\n".join([
-        f"Q: {item['question']}\nA: {item['answer']}"
-        for item in all_data
-    ]) if all_data else "Database kosong"
+    # LIMIT data yang dikirim (penting untuk Replit!)
+    max_items = 20  # Maksimal 20 Q&A
+    limited_data = all_data[:max_items]
+    
+    # Build context dengan batasan karakter
+    context_parts = []
+    total_chars = 0
+    max_context_chars = 2500  # Batasan ketat untuk Replit
+    
+    for item in limited_data:
+        entry = f"Q: {item['question']}\nA: {item['answer']}"
+        if total_chars + len(entry) > max_context_chars:
+            break
+        context_parts.append(entry)
+        total_chars += len(entry)
+    
+    context_text = "\n\n".join(context_parts) if context_parts else "Tidak ada data relevan"
     
     try:
-        async with aiohttp.ClientSession() as session:
+        # Timeout ketat untuk Replit
+        timeout = aiohttp.ClientTimeout(total=12)
+        
+        async with aiohttp.ClientSession(timeout=timeout) as session:
             headers = {
                 "Authorization": f"Bearer {groq_api_key}",
                 "Content-Type": "application/json"
@@ -87,24 +201,22 @@ async def get_ai_response(question, all_data):
                 "model": "llama-3.3-70b-versatile",
                 "messages": [
                     {
+                        "role": "system",
+                        "content": "Kamu AI helper Toram Online. Jawab singkat, jelas, dan to the point. Maksimal 400 kata."
+                    },
+                    {
                         "role": "user", 
-                        "content": f"""Kamu AI helper game Toram Online.
-
-DATABASE:
+                        "content": f"""DATABASE:
 {context_text}
 
-PERTANYAAN USER: {question}
+PERTANYAAN: {question}
 
-INSTRUKSI:
-- Analisis sendiri data mana yang relevan
-- Filter sendiri info yang perlu ditampilkan
-- Format output sesuai kebutuhan (list/detail/singkat)
-- Jika user minta "tanpa X" atau "jangan Y", skip bagian itu
-- Jawab natural dan to the point"""
+Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
                     }
                 ],
-                "temperature": 0.3,
-                "max_tokens": 2000
+                "temperature": 0.2,  # Lebih rendah = lebih konsisten
+                "max_tokens": 800,   # Dikurangi untuk response cepat
+                "top_p": 0.9
             }
             
             async with session.post(
@@ -114,15 +226,40 @@ INSTRUKSI:
             ) as resp:
                 if resp.status == 200:
                     result = await resp.json()
-                    return result['choices'][0]['message']['content']
+                    answer = result['choices'][0]['message']['content']
+                    # Truncate jika terlalu panjang
+                    return answer[:2000] if len(answer) > 2000 else answer
+                    
+                elif resp.status == 429:  # Rate limit
+                    print("⚠️ Rate limit Groq API")
+                    if limited_data:
+                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ API sedang sibuk_"
+                    return "⚠️ API rate limit, coba lagi sebentar!"
+                    
                 else:
-                    if all_data:
-                        return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
-                    return "❌ Error API"
+                    error_text = await resp.text()
+                    print(f"❌ API Error {resp.status}: {error_text[:200]}")
+                    if limited_data:
+                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}"
+                    return f"❌ API Error ({resp.status})"
+                    
+    except asyncio.TimeoutError:
+        print("⏱️ Timeout - Replit connection slow")
+        if limited_data:
+            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⏱️ Koneksi lambat, gunakan data lokal_"
+        return "⏱️ Timeout! Coba lagi atau gunakan !list untuk lihat data."
+        
+    except aiohttp.ClientError as e:
+        print(f"❌ Network error: {str(e)}")
+        if limited_data:
+            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_❌ Network error_"
+        return "❌ Koneksi bermasalah, coba lagi!"
+        
     except Exception as e:
-        if all_data:
-            return f"🤖 Dari database:\n\n{all_data[0]['answer']}\n\n_(AI offline)_"
-        return f"❌ Error: {str(e)}"
+        print(f"❌ Unexpected error: {str(e)}")
+        if limited_data:
+            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ Fallback mode_"
+        return f"❌ Error: {str(e)[:100]}"
 
 # ============================================
 # IMPORT FROM TXT
@@ -175,51 +312,107 @@ async def import_txt(ctx, filename: str = "data_qa.txt"):
 # COMMAND: TANYA
 # ============================================
 
+# @bot.command(name='tanya', aliases=['ask', 'ai', 't'])
+# async def ask_ai(ctx, *, question):
+#     """Tanya ke AI"""
+#     async with ctx.typing():
+#         # Get all matching data (no filtering)
+#         all_data = search_knowledge(question)
+        
+#         # Collect images
+#         images_found = []
+#         if all_data:
+#             for item in all_data:
+#                 if 'images' in item and item['images']:
+#                     images_found.extend(item['images'])
+        
+#         # AI process everything
+#         response = await get_ai_response(question, all_data)
+        
+#         # Create embed
+#         embed = discord.Embed(
+#             title="🤖 Toram AI Helper",
+#             description=response[:4000],
+#             color=0x5865F2,
+#             timestamp=datetime.now()
+#         )
+        
+#         # Add images
+#         if images_found:
+#             embed.set_image(url=images_found[0])
+#             if len(images_found) > 1:
+#                 embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar")
+#             else:
+#                 embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ 1 gambar")
+#         else:
+#             embed.set_footer(text=f"Ditanya oleh {ctx.author.name}")
+        
+#         await ctx.reply(embed=embed, mention_author=False)
+        
+#         # Save conversation
+#         knowledge_base["conversations"].append({
+#             "question": question,
+#             "answer": response[:500],
+#             "user": str(ctx.author),
+#             "timestamp": str(datetime.now())
+#         })
+#         save_knowledge(knowledge_base)
+
 @bot.command(name='tanya', aliases=['ask', 'ai', 't'])
 async def ask_ai(ctx, *, question):
     """Tanya ke AI"""
+    
+    # Quick validation
+    if len(question) < 3:
+        await ctx.reply("❓ Pertanyaan terlalu pendek!")
+        return
+    
     async with ctx.typing():
-        # Get all matching data (no filtering)
-        all_data = search_knowledge(question)
-        
-        # Collect images
-        images_found = []
-        if all_data:
-            for item in all_data:
-                if 'images' in item and item['images']:
-                    images_found.extend(item['images'])
-        
-        # AI process everything
-        response = await get_ai_response(question, all_data)
-        
-        # Create embed
-        embed = discord.Embed(
-            title="🤖 Toram AI Helper",
-            description=response[:4000],
-            color=0x5865F2,
-            timestamp=datetime.now()
-        )
-        
-        # Add images
-        if images_found:
-            embed.set_image(url=images_found[0])
-            if len(images_found) > 1:
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar")
+        try:
+            # Get matching data
+            all_data = search_knowledge(question)
+            
+            # Collect images (max 3)
+            images_found = []
+            if all_data:
+                for item in all_data[:10]:  # Only check first 10
+                    if 'images' in item and item['images']:
+                        images_found.extend(item['images'][:1])  # Max 1 per item
+                        if len(images_found) >= 3:
+                            break
+            
+            # Get AI response
+            response = await get_ai_response(question, all_data)
+            
+            # Create embed
+            embed = discord.Embed(
+                title="🤖 Toram AI Helper",
+                description=response[:4000],
+                color=0x5865F2,
+                timestamp=datetime.now()
+            )
+            
+            # Add first image only
+            if images_found:
+                embed.set_image(url=images_found[0])
+                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar | {len(all_data)} data")
             else:
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ 1 gambar")
-        else:
-            embed.set_footer(text=f"Ditanya oleh {ctx.author.name}")
-        
-        await ctx.reply(embed=embed, mention_author=False)
-        
-        # Save conversation
-        knowledge_base["conversations"].append({
-            "question": question,
-            "answer": response[:500],
-            "user": str(ctx.author),
-            "timestamp": str(datetime.now())
-        })
-        save_knowledge(knowledge_base)
+                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | {len(all_data)} data ditemukan")
+            
+            await ctx.reply(embed=embed, mention_author=False)
+            
+            # Save conversation (async to not block)
+            knowledge_base["conversations"].append({
+                "question": question[:200],
+                "answer": response[:300],
+                "user": str(ctx.author),
+                "timestamp": str(datetime.now())
+            })
+            save_knowledge(knowledge_base)
+            
+        except Exception as e:
+            print(f"❌ Error in ask_ai: {str(e)}")
+            await ctx.reply(f"❌ Terjadi error: {str(e)[:100]}\n\nCoba lagi atau gunakan `!list`")
 
 # ============================================
 # COMMAND: TEACH
@@ -390,16 +583,32 @@ async def help_command(ctx):
 # BOT EVENTS
 # ============================================
 
+# @bot.event
+# async def on_ready():
+#     print('='*50)
+#     print(f'✅ Bot Online: {bot.user}')
+#     print(f'📚 Knowledge: {len(knowledge_base["qa_pairs"])} Q&A')
+#     print('='*50)
+    
+#     await bot.change_presence(
+#         activity=discord.Activity(
+#             type=discord.ActivityType.playing,
+#             name="Toram Online | !help"
+#         )
+#     )
+
 @bot.event
 async def on_ready():
     print('='*50)
     print(f'✅ Bot Online: {bot.user}')
     print(f'📚 Knowledge: {len(knowledge_base["qa_pairs"])} Q&A')
+    print(f'🌍 Groq API: {"✅ Configured" if os.environ.get("GROQ_API_KEY") else "❌ Missing"}')
+    print(f'🔑 Discord Token: {"✅ Set" if os.environ.get("DISCORD_TOKEN") else "❌ Missing"}')
     print('='*50)
     
     await bot.change_presence(
         activity=discord.Activity(
-            type=discord.ActivityType.playing,
+            type=discord.ActivityType.watching,
             name="Toram Online | !help"
         )
     )

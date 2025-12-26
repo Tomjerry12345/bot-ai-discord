@@ -84,7 +84,8 @@ async def get_ai_response(question, all_data):
             }
             
             data = {
-                "model": "llama-3.3-70b-versatile",
+                # "model": "llama-3.3-70b-versatile",
+                "model": "llama-3.1-8b-instant",
                 "messages": [
                     {
                         "role": "user", 

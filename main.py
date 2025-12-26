@@ -7,8 +7,28 @@ import aiohttp
 from dotenv import load_dotenv
 import sys
 
-# Load environment variables
-load_dotenv()
+# Coba load dari .env (untuk local dev)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    print("📁 .env file loaded (local mode)")
+except ImportError:
+    print("📦 dotenv not found, using Replit Secrets")
+
+# Validate tokens
+DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN') or os.getenv('DISCORD_TOKEN')
+GROQ_API_KEY = os.environ.get('GROQ_API_KEY') or os.getenv('GROQ_API_KEY')
+
+if not DISCORD_TOKEN:
+    print("❌ DISCORD_TOKEN tidak ditemukan di environment!")
+    print("💡 Set di Replit Secrets atau .env file")
+    sys.exit(1)
+
+if not GROQ_API_KEY:
+    print("⚠️ GROQ_API_KEY tidak ditemukan!")
+    print("💡 Bot akan jalan tapi AI tidak akan aktif")
+else:
+    print(f"✅ GROQ_API_KEY loaded: {GROQ_API_KEY[:10]}...{GROQ_API_KEY[-4:]}")
 
 # Bot setup
 intents = discord.Intents.default()
@@ -650,15 +670,13 @@ def keep_alive():
 if __name__ == "__main__":
     keep_alive()
     
-    TOKEN = os.environ.get('DISCORD_TOKEN')
-    
-    if not TOKEN:
+    if not DISCORD_TOKEN:
         print("\n❌ DISCORD_TOKEN tidak ditemukan!")
         sys.exit(1)
     else:
         print("🚀 Starting bot...\n")
         try:
-            bot.run(TOKEN)
+            bot.run(DISCORD_TOKEN)
         except Exception as e:
             print(f"\n❌ Error: {e}")
             save_knowledge(knowledge_base)

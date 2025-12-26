@@ -711,6 +711,7 @@ async def on_command_error(ctx, error):
 
 from flask import Flask
 from threading import Thread
+import time
 
 app = Flask('')
 
@@ -718,13 +719,59 @@ app = Flask('')
 def home():
     return "🤖 Bot is running!"
 
+@app.route('/health')
+def health():
+    return {
+        "status": "online",
+        "bot": str(bot.user) if bot.is_ready() else "starting...",
+        "guilds": len(bot.guilds) if bot.is_ready() else 0
+    }
+
 def run():
     import logging
     logging.getLogger('werkzeug').setLevel(logging.ERROR)
-    app.run(host='0.0.0.0', port=8080)
+    
+    port = int(os.environ.get('PORT', 8080))
+    print(f"🌐 Flask server starting on 0.0.0.0:{port}...")
+    app.run(host='0.0.0.0', port=port, debug=False, threaded=True)
 
 def keep_alive():
-    Thread(target=run, daemon=True).start()
+    t = Thread(target=run, daemon=True)
+    t.start()
+    print("✅ Keep-alive thread started")
+    
+    # Wait for Flask to start
+    time.sleep(2)
+    
+    # Print possible URLs
+    print_replit_urls()
+
+def print_replit_urls():
+    """Print all possible Replit URLs"""
+    try:
+        repl_slug = os.environ.get('REPL_SLUG', 'bot-ai-discord')
+        repl_owner = os.environ.get('REPL_OWNER', 'Tomjerry12345')
+        
+        # All possible URL formats
+        urls = [
+            f"https://{repl_slug}.{repl_owner}.repl.co",
+            f"https://{repl_slug}--{repl_owner}.repl.co",
+            f"https://{repl_slug}-{repl_owner}.repl.dev",
+            f"https://{repl_slug}.{repl_owner}.replit.dev",
+        ]
+        
+        print("\n" + "="*60)
+        print("🌐 REPLIT PUBLIC URLs - Test semua di browser!")
+        print("="*60)
+        for i, url in enumerate(urls, 1):
+            print(f"   {i}. {url}")
+        print("="*60)
+        print("💡 Copy salah satu URL di atas untuk UptimeRobot")
+        print("✅ Yang muncul '🤖 Bot is running!' adalah URL yang benar!")
+        print("="*60 + "\n")
+        
+    except Exception as e:
+        print(f"⚠️ Could not determine URL: {e}")
 
 # ============================================
 # RUN BOT
@@ -735,6 +782,7 @@ if __name__ == "__main__":
     
     if not DISCORD_TOKEN:
         print("\n❌ DISCORD_TOKEN tidak ditemukan!")
+        import sys
         sys.exit(1)
     else:
         print("🚀 Starting bot...\n")

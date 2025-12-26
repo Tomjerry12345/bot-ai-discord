@@ -181,7 +181,7 @@ async def ask_ai(ctx, *, question):
     """Tanya ke AI"""
     async with ctx.typing():
         # Get all matching data (no filtering)
-        all_data = search_knowledge(question)
+        all_data = search_knowledge(question)[:5]
         
         # Collect images
         images_found = []

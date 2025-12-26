@@ -880,6 +880,42 @@
       "answer": "Terdapat beberapa kode buff maxhp, yaitu: \n3090618, \n2010228, \n6010062, \n1010356, \n1010417, \n3010058, \n3191130, \n1010032, \n1010455, \n3260178, \n1250015, \n3040005, \n3100301, \n4262222, \n1107777.",
       "user": "ayanokoji_kyo055",
       "timestamp": "2025-12-26 21:56:44.307998"
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "🤖 **Dari database:**\n\n3090618\n\n_🔑 API key bermasalah, gunakan data lokal_",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 13:58:23.531560"
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "Terdapat beberapa kode buff maxhp, yaitu: \n3090618, \n2010228, \n6010062, \n1010356, \n1010417, \n3010058, \n3191130, \n1010032, \n1010455, \n3260178, \n1250015, \n3040005, \n3100301, \n4262222, \n1107777.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 14:01:15.586846"
+    },
+    {
+      "question": "tampilkan 5 kode buff dte",
+      "answer": "Berikut 5 kode buff DTE yang ada di database:\n1. 2130776 (DTE Dark)\n2. 1010216 (DTE Earth)\n3. 4240242 (DTE Fire)\n4. 3111999 (DTE Light)\n5. 7011001 (DTE Water)",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 14:06:35.982355"
+    },
+    {
+      "question": "kode buff luck",
+      "answer": "Tidak tahu, karena tidak ada informasi tentang kode buff luck di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 14:07:41.084117"
+    },
+    {
+      "question": "kode buff drop rate",
+      "answer": "Kode buff drop rate ada dua, yaitu: \n1. 1010085\n2. 4196969",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 14:07:52.106262"
+    },
+    {
+      "question": "apa itu toram?",
+      "answer": "Tidak tahu, karena tidak ada data relevan tentang \"toram\" di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 14:08:18.622309"
     }
   ]
 }

@@ -1,0 +1,1159 @@
+{
+  "qa_pairs": [
+    {
+      "question": "kode buff MAXMP",
+      "answer": "3017676",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:21:20.265054",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff -aggro",
+      "answer": "1010147",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:22:13.510063",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff acc",
+      "answer": "2010308",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:23:44.488160",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff acc",
+      "answer": "1181220",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:24:02.024898",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "1110033",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:24:18.954459",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "4262222",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:24:27.558895",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "3100301",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:24:33.696587",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "4240242",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:24:39.823654",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte dark",
+      "answer": "2130776",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:24:55.318787",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte dark",
+      "answer": "1190020",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:03.026126",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte earth",
+      "answer": "1010216",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:10.966473",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte earth",
+      "answer": "4233333",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:18.843780",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte earth",
+      "answer": "1011001",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:26.840164",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "4240242",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:34.312734",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "8120000",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:41.283873",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "9181111",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:47.519913",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "1121212",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:25:53.979371",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte light",
+      "answer": "3111999",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:26:00.202498",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte neutral",
+      "answer": "1014999",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:26:08.418347",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte water",
+      "answer": "7011001",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:26:14.837275",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte water",
+      "answer": "3210100",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:26:21.006929",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte water",
+      "answer": "1110111",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:26:27.867142",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff +aggro",
+      "answer": "3053131",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff -aggro",
+      "answer": "1010147",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff acc",
+      "answer": "2010308",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff acc",
+      "answer": "1181220",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "1110033",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "4262222",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "3100301",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff agi",
+      "answer": "4240242",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "1013291",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "1010036",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "4040404",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "7220777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "1019696",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "4083005",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "4233333",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "2020909",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "5010031",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "1047777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "4261111",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "6030603",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff ampr",
+      "answer": "2011234",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff crt",
+      "answer": "5010098",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff crt",
+      "answer": "7010086",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff crt",
+      "answer": "3010777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff crt",
+      "answer": "1100000",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dex",
+      "answer": "5010092",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dex",
+      "answer": "1010261",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dex",
+      "answer": "5010031",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dex",
+      "answer": "1107777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff drop rate",
+      "answer": "1010085",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff drop rate",
+      "answer": "4196969",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte dark",
+      "answer": "2130776",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte dark",
+      "answer": "1190020",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte earth",
+      "answer": "1010216",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte earth",
+      "answer": "4233333",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte earth",
+      "answer": "1011001",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "4240242",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "8120000",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "9181111",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "1121212",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte light",
+      "answer": "3111999",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte neutral",
+      "answer": "1014999",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte water",
+      "answer": "7011001",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte water",
+      "answer": "3210100",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff dte water",
+      "answer": "1110111",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff frac barrier",
+      "answer": "1074649",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff int",
+      "answer": "6010701",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff int",
+      "answer": "1047777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff int",
+      "answer": "1032222",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff m barrier",
+      "answer": "2020505",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff matk",
+      "answer": "1024649",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "3090618",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "2010228",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "6010062",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "1010356",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "1010417",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "3010058",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "3191130",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "1010032",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "1010455",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "3260178",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "1250015",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "3040005",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "3100301",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "4262222",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "1107777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "3010069",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "3010037",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "6052000",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "6010021",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "6198888",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "3060000",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "4011793",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "7012828",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "3204544",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "1100017",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "7150029",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "6066666",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "1091111",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "1017676",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "1027777",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "4120003",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "2010079",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "1240000",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "2020101",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "6030603",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "2011234",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "1032222",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff maxmp",
+      "answer": "3202222",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff str",
+      "answer": "1011069",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff str",
+      "answer": "4016699",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff str",
+      "answer": "2020303",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff str",
+      "answer": "1024434",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff str",
+      "answer": "4010024",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff vit",
+      "answer": "4032850",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff vit",
+      "answer": "5130123",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "kode buff watk",
+      "answer": "4240242",
+      "taught_by": "TXT_IMPORT",
+      "timestamp": "2025-12-25 15:39:51.617567",
+      "is_detailed": false
+    },
+    {
+      "question": "xtall crysta Kalajengkel",
+      "answer": "**Kalajengkel (normal)**\n**Stat**\n* 🟢 Critical Rate +10%\n* 🟢 Stability +2%\n* 🔴 Daya Jarak Dekat -1%\n**Tempat di peroleh**\n* 🟡 Kalajengkel (Lv 254) [Grojogan Milcaska: Markas Laskar]",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:25:43.961620",
+      "is_detailed": true
+    },
+    {
+      "question": "xtall crysta Arbogazella",
+      "answer": "**Arbogazella (senjata)**\n**Stat**\n* 🟢 Daya Jarak Jauh +7%\n* 🟢 Accuracy +14%\n* 🔴 MaxHP -28%\n**Tempat di peroleh**\n* 🟡 Arbogazella (Lv 236) [Hutan Lindung: Rimba Sesat]",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:38:32.260999",
+      "is_detailed": true
+    },
+    {
+      "question": "xtall crysta Jeandoux",
+      "answer": "**Jeandoux (senjata)**\n**Stat**\n* 🟢 Critical Damage +7\n* 🟢 STR +3%\n* 🔴 Aggro -10%\n**Tempat di peroleh**\n* 🟡 Jeandoux (Susu) (Lv 120) [Neraka Manis (Valentine Event)]\n* 🟡 Jeandoux (Manis) (Lv 150) [Neraka Manis (Valentine Event)]\n* 🟡 Jeandoux (Pahit) (Lv 180) [Neraka Manis (Valentine Event)]\n* 🟡 Jeandoux (Dark) (Lv 210) [Neraka Manis (Valentine Event)]",
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:40:44.201730",
+      "is_detailed": true
+    },
+    {
+      "question": "build tank bs",
+      "answer": "Stat: full mtl, sisanya bebas\n\nSkill 1: \nSkill 2:",
+      "images": [
+        "https://cdn.discordapp.com/attachments/1453745455258275994/1454052714781605918/Gambar_WhatsApp_2025-07-22_pukul_23.09.40_ae5601b5.jpg?ex=694faf9e&is=694e5e1e&hm=3e53f9d06d6dcc72f3ca16fdfa18ed47de98bf722544819fab4343f97899c2a7&",
+        "https://cdn.discordapp.com/attachments/1453745455258275994/1454052715155030066/Gambar_WhatsApp_2025-07-22_pukul_23.09.40_ae5601b5.jpg?ex=694faf9e&is=694e5e1e&hm=225518625c54bdd63b341bbc92e33c3f2be68b12e7412fb4deb1126f90ad5f75&"
+      ],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:06:21.795434"
+    }
+  ],
+  "documents": [],
+  "conversations": [
+    {
+      "question": "kode buff maxmp?",
+      "answer": "Kode buff MAXMP: **3017676**",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:21:35.416842"
+    },
+    {
+      "question": "kode buff +aggro | 3053131",
+      "answer": "Kode buff +aggro: **3053131**",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:22:27.310916"
+    },
+    {
+      "question": "kode buff dte fire",
+      "answer": "Kode buff DTE Fire: **4010703**",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:26:38.219153"
+    },
+    {
+      "question": "list kode buff dte fire",
+      "answer": "Tidak ada informasi tentang kode buff \"dte fire\" di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:27:08.720432"
+    },
+    {
+      "question": "list kode buff acc",
+      "answer": "Kode buff acc: **2010308**",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:27:37.311888"
+    },
+    {
+      "question": "list kode buff dte water",
+      "answer": "Kode buff DTE Water: \n7011001, 3210100, 1110111",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:33:06.566840"
+    },
+    {
+      "question": "list kode buff dte",
+      "answer": "**Kode Buff DTE:**\n- Dark: 2130776, 1190020\n- Earth: 1010216, 4233333, 1011001\n- Fire: 4240242, 8120000, 9181111, 1121212\n- Light: 3111999\n- Neutral: 1014999\n- Water: 7011001, 3210100, 1110111",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:33:20.577317"
+    },
+    {
+      "question": "list kode buff dte",
+      "answer": "**Kode Buff DTE:**\n- Dark: 2130776, 1190020\n- Earth: 1010216, 4233333, 1011001\n- Fire: 4240242, 8120000, 9181111, 1121212\n- Light: 3111999\n- Neutral: 1014999\n- Water: 7011001, 3210100, 1110111",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 15:40:15.368198"
+    },
+    {
+      "question": "list kode buff dte fire",
+      "answer": "**Dte Fire:**\n`4240242`, `8120000`, `9181111`, `1121212`\n\n**Dte Dark:**\n`2130776`, `1190020`\n\n**Dte Earth:**\n`1010216`, `4233333`, `1011001`\n\n**Dte Light:**\n`3111999`\n\n**Dte Neutral:**\n`1014999`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 19:28:32.835800"
+    },
+    {
+      "question": "kode buff dte neutral",
+      "answer": "**Kode Buff Dte Neutral:** `1014999`\n\n_Alternatif: `1014999`, `2130776`_",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 19:28:56.195682"
+    },
+    {
+      "question": "list kode buff dte dark",
+      "answer": "**Dte Dark:**\n`2130776`, `1190020`\n\n**Dte Earth:**\n`1010216`, `4233333`, `1011001`\n\n**Dte Fire:**\n`4240242`, `8120000`, `9181111`, `1121212`\n\n**Dte Light:**\n`3111999`\n\n**Dte Neutral:**\n`1014999`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 19:29:22.986537"
+    },
+    {
+      "question": "list kode buff dte neutral",
+      "answer": "**Dte Neutral:**\n`1014999`\n\n**Dte Dark:**\n`2130776`, `1190020`\n\n**Dte Earth:**\n`1010216`, `4233333`, `1011001`\n\n**Dte Fire:**\n`4240242`, `8120000`, `9181111`, `1121212`\n\n**Dte Light:**\n`3111999`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 19:29:52.625641"
+    },
+    {
+      "question": "list kode buff maxmp",
+      "answer": "**Maxmp:**\n`3017676`, `3010069`, `3010037`, `6052000`, `6010021`, `6198888`, `3060000`, `4011793`, `7012828`, `3204544`\n\n**-Aggro:**\n`1010147`\n\n**Acc:**\n`2010308`, `1181220`\n\n**Agi:**\n`1110033`, `4262222`, `3100301`, `4240242`\n\n**Dte Dark:**\n`2130776`, `1190020`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 19:30:20.553288"
+    },
+    {
+      "question": "xtall kalajengkel",
+      "answer": "**Xtall  Kalajengkel:**\n• **Kalajengkel (normal)**\n**Stat**\n * Critical Rate +10% \n * Stability +2% \n* Daya Jarak Dekat -1%\n**Tempat di peroleh**\n* Kalajengkel (Lv 254) [Grojogan Milcaska: Markas Laskar]",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 20:53:16.274831"
+    },
+    {
+      "question": "tempat dapat xtall kalajengkel",
+      "answer": "**Xtall  Kalajengkel:**\n• **Kalajengkel (normal)**\n**Stat**\n * Critical Rate +10% \n * Stability +2% \n* Daya Jarak Dekat -1%\n**Tempat di peroleh**\n* Kalajengkel (Lv 254) [Grojogan Milcaska: Markas Laskar]",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 20:54:04.965941"
+    },
+    {
+      "question": "kode maxhp",
+      "answer": "**Kode Buff Maxhp:** `3090618`\n\n_Alternatif: `2010228`, `6010062`_",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:09:59.734922"
+    },
+    {
+      "question": "list kode maxhp",
+      "answer": "**Maxhp:**\n• `3090618`\n• `2010228`\n• `6010062`\n• `1010356`\n• `1010417`\n• `3010058`\n• `3191130`\n• `1010032`\n• `1010455`\n• `3260178`\n• `1250015`\n• `3040005`\n• `3100301`\n• `4262222`\n• `1107777`",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:10:12.185136"
+    },
+    {
+      "question": "kode buff dte",
+      "answer": "**Kode Buff Dte Dark:** `2130776`\n\n_Alternatif: `1190020`, `1010216`_",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:10:29.696720"
+    },
+    {
+      "question": "list kode buff dte",
+      "answer": "**Dte Dark:**\n`2130776`, `1190020`\n\n**Dte Earth:**\n`1010216`, `4233333`, `1011001`\n\n**Dte Fire:**\n`4240242`, `8120000`, `9181111`, `1121212`\n\n**Dte Light:**\n`3111999`\n\n**Dte Neutral:**\n`1014999`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:10:40.227045"
+    },
+    {
+      "question": "crysta normal",
+      "answer": "**Kalajengkel (normal)** \n🟢 Critical Rate +10% \n🟢 Stability +2% \n🔴 Daya Jarak Dekat -1%",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:31:33.655189"
+    },
+    {
+      "question": "tempat xtall kalajengkel",
+      "answer": "**Xtall  Kalajengkel:**\n• **Kalajengkel (normal)**\n**Stat**\n* 🟢 Critical Rate +10%\n* 🟢 Stability +2%\n* 🔴 Daya Jarak Dekat -1%\n**Tempat di peroleh**\n* 🟡 Kalajengkel (Lv 254) [Grojogan Milcaska: Markas Laskar]",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:32:37.003613"
+    },
+    {
+      "question": "xtall senjata",
+      "answer": "**Xtall  Arbogazella:**\n• **Arbogazella (senjata)**\n**Stat**\n* 🟢 Daya Jarak Jauh +7%\n* 🟢 Accuracy +14%\n* 🔴 MaxHP -28%\n**Tempat di peroleh**\n* 🟡 Arbogazella (Lv 236) [Hutan Lindung: Rimba Sesat]\n\n**Xtall  Jeandoux:**\n• **Jeandoux (senjata)**\n**Stat**\n* 🟢 Critical Damage +7\n* 🟢 STR +3%\n* 🔴 Aggro -10%\n**Tempat di peroleh**\n* 🟡 Jeandoux (Susu) (Lv 120) [Neraka Manis (Valentine Event)]\n* 🟡 Jeandoux (Manis) (Lv 150) [Neraka Manis (Valentine Event)]\n* 🟡 Jeandoux (Pahit) (Lv 180) [Neraka Manis (Valentine Event)]\n* 🟡 Jeandoux (Dark) (Lv 210) [Neraka Manis (Valentine Event)]\n\n**Xtall  Kalajengkel:**\n• **Kalajengkel (normal)**\n**Stat**\n* 🟢 Critical Rate +10%\n* 🟢 Stability +2%\n* 🔴 Daya Jarak Dekat -1%\n**Tempat di peroleh**\n* 🟡 Kalajengkel (Lv 254) [Grojogan Milcaska: Markas Laskar]\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:41:22.853102"
+    },
+    {
+      "question": "gak usah tampilkan stat nya",
+      "answer": "Maaf, pertanyaanmu tidak lengkap. Tolong berikan nama xtall crysta yang ingin kamu tanyakan 🤔",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:42:43.169914"
+    },
+    {
+      "question": "crysta senjata, jangan tampilkan stat nya",
+      "answer": "**Arbogazella (senjata)** dan **Jeandoux (senjata)** 💫",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:43:50.749191"
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "**Kode Buff Maxhp:** `3090618`\n\n_Alternatif: `2010228`, `6010062`_",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:55:51.599447"
+    },
+    {
+      "question": "list kode maxhp",
+      "answer": "**Maxhp:**\n`3090618`, `2010228`, `6010062`, `1010356`, `1010417`, `3010058`, `3191130`, `1010032`, `1010455`, `3260178`\n\n**Xtall  Arbogazella:**\n`**Arbogazella (senjata)**\n**Stat**\n* 🟢 Daya Jarak Jauh +7%\n* 🟢 Accuracy +14%\n* 🔴 MaxHP -28%\n**Tempat di peroleh**\n* 🟡 Arbogazella (Lv 236) [Hutan Lindung: Rimba Sesat]`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:56:19.568416"
+    },
+    {
+      "question": "list kode buff dte",
+      "answer": "**Dte Dark:**\n`2130776`, `1190020`\n\n**Dte Earth:**\n`1010216`, `4233333`, `1011001`\n\n**Dte Fire:**\n`4240242`, `8120000`, `9181111`, `1121212`\n\n**Dte Light:**\n`3111999`\n\n**Dte Neutral:**\n`1014999`\n\n",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 21:57:05.580155"
+    },
+    {
+      "question": "tampilkan list xtall senjata jangan tampilkan stat nya",
+      "answer": "**Xtall Senjata:**\n• Arbogazella (senjata)\n• Jeandoux (senjata)\n• Gwaimol (senjata)\n• Machina (senjata)\n\n[Total: 4 xtall] \n\n(Note: Kalajengkel tidak termasuk karena jenisnya \"normal\", bukan \"senjata\")",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 22:18:20.652676"
+    },
+    {
+      "question": "apa saja stat xtall altadar?",
+      "answer": "🤔 Pertanyaan user: \"apa saja stat xtall altadar\"\n\nAnalisis:\n- User minta **stat** xtall Altadar\n- Tidak ada kata \"jangan\" atau \"tanpa\" yang terkait dengan stat, sehingga kita **harus menampilkan stat**.\n\nNamun, karena tidak ada informasi tentang xtall Altadar di database, jawaban yang tepat adalah:\n\nTidak tahu 🙅‍♂️",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 22:19:45.566302"
+    },
+    {
+      "question": "apa saja stat Arbogazella",
+      "answer": "**Stat Arbogazella:**\n* 🟢 Daya Jarak Jauh +7%\n* 🟢 Accuracy +14%\n* 🔴 MaxHP -28%\n\n(Hanya menampilkan stat karena user meminta informasi tentang stat Arbogazella)",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 22:27:26.079031"
+    },
+    {
+      "question": "dimana tempat dapat xtall arbogazella?",
+      "answer": "**Lokasi Xtall Arbogazella:**\n🟡 Arbogazella (Lv 236) [Hutan Lindung: Rimba Sesat]\n\n(Tidak menampilkan stat karena user tidak meminta informasi tentang stat)",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 22:28:25.763376"
+    },
+    {
+      "question": "tampilkan semua kode buff dte",
+      "answer": "**Kode Buff DTE:**\n• 2130776 (DTE Dark)\n• 1190020 (DTE Dark)\n• 1010216 (DTE Earth)\n• 4233333 (DTE Earth)\n• 1011001 (DTE Earth)\n• 4240242 (DTE Fire)\n• 8120000 (DTE Fire)\n• 9181111 (DTE Fire)\n• 1121212 (DTE Fire)\n• 3111999 (DTE Light)\n• 1014999 (DTE Neutral)\n• 7011001 (DTE Water)\n• 3210100 (DTE Water)\n• 1110111 (DTE Water)\n\n[Tidak ada filter atau exclude dalam pertanyaan user, sehingga semua kode buff DTE ditampilkan] 📝",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 22:29:06.430889"
+    },
+    {
+      "question": "xtall senjata yg punya stat maxhp",
+      "answer": "**Xtall Senjata dengan Stat MaxHP:**\n• **Arbogazella (senjata)** \n  Stat: Daya Jarak Jauh +7%, Accuracy +14%, MaxHP -28% \n\nPerlu diingat bahwa xtall Arbogazella memiliki stat MaxHP, tetapi nilainya negatif (-28%). Jika Anda mencari xtall senjata dengan stat MaxHP positif, maka tidak ada data yang sesuai dengan kriteria tersebut di database. Xtall lainnya seperti Jeandoux dan Kalajengkel tidak memiliki stat MaxHP.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-25 22:41:56.263458"
+    },
+    {
+      "question": "build bs",
+      "answer": "**Build BS:**\n• Full teach + sisa nya bebas (stat)\n• Tidak ada info tentang skill yang spesifik untuk build BS, karena tidak disebutkan dalam database. \n\nJika Anda membutuhkan informasi lebih lanjut tentang skill, saya sarankan untuk mencari sumber lain atau meminta klarifikasi lebih lanjut tentang build BS yang Anda cari. 🤔",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 15:47:32.315463"
+    },
+    {
+      "question": "full build bs",
+      "answer": "**Full Build BS:**\n• **Stat:** Full teach + sisa nya bebas\n• **Skill:** (tidak ada info spesifik tentang skill) \n\nPerlu diingat bahwa informasi tentang skill tidak disediakan dalam database yang ada. Jika Anda membutuhkan informasi lebih lanjut tentang skill, saya sarankan untuk mencari sumber lain atau meminta klarifikasi lebih lanjut.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 15:47:59.210807"
+    },
+    {
+      "question": "builf bs",
+      "answer": "🤖 Dari database:\n\nQ: full build char bs\nA: **STAT **: full teach + sisa nya bebas\n**SKILL**\n\n_(AI offline)_",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 15:52:31.082037"
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "Berikut beberapa kode buff maxhp: \n3090618, 2010228, 6010062, 1010356, 1010417, 3010058, 3191130, 1010032, 1010455, 3260178, 1250015, 3040005, 3100301, 4262222, 1107777.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 17:58:32.626330"
+    },
+    {
+      "question": "kode buff semua dte",
+      "answer": "Berikut kode buff DTE semua:\n- Dark: 2130776, 1190020\n- Earth: 1010216, 4233333, 1011001\n- Fire: 4240242, 8120000, 9181111, 1121212\n- Light: 3111999\n- Neutral: 1014999\n- Water: 7011001, 3210100, 1110111",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 17:58:46.601136"
+    },
+    {
+      "question": "apa saja list kode buff yg kamu punya?",
+      "answer": "Berikut list kode buff yang saya punya:\n1. MAXMP - 3017676\n2. -aggro - 1010147\n3. acc - 2010308, 1181220\n4. agi - 1110033, 4262222, 3100301, 4240242\n5. dte dark - 2130776, 1190020\n6. dte earth - 1010216, 4233333, 1011001\n7. dte fire - 4240242, 8120000, 9181111, 1121212\n8. dte light - 3111999\n9. dte neutral - 1014999\n10. dte water - 7011001",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 17:59:11.123607"
+    },
+    {
+      "question": "+aggro ada enggak?",
+      "answer": "Ada, kode buff +aggro adalah 3053131.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 17:59:27.259928"
+    },
+    {
+      "question": "berapa total buff kode +aggro?",
+      "answer": "Total buff kode -aggro adalah 1, yaitu 1010147.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 17:59:45.020446"
+    },
+    {
+      "question": "list kode buff aggro+",
+      "answer": "Tidak ada kode buff aggro+ di database. Namun, kode buff -aggro adalah 1010147.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:00:10.669482"
+    },
+    {
+      "question": "list kode buff +aggro",
+      "answer": "Kode buff +aggro: 3053131",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:00:29.797602"
+    },
+    {
+      "question": "ada berapa kode buff dte water?",
+      "answer": "Terdapat 3 kode buff DTE water, yaitu 7011001, 3210100, dan 1110111.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:00:47.161446"
+    },
+    {
+      "question": "kode buff maxhp",
+      "answer": "Beberapa kode buff maxhp adalah: 3090618, 2010228, 6010062, 1010356, 1010417, 3010058, 3191130, 1010032, 1010455, 3260178, 1250015, 3040005, 3100301, 4262222, 1107777.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:11:19.571065"
+    },
+    {
+      "question": "ada berapa kode buff maxhp?",
+      "answer": "Tidak ada kode buff maxhp di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:11:32.370980"
+    },
+    {
+      "question": "jumlah kode buff maxmp",
+      "answer": "Terdapat 23 kode buff maxmp.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:12:05.968868"
+    },
+    {
+      "question": "jumlah kode buff maxhp",
+      "answer": "Terdapat 17 kode buff maxhp.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-26 18:12:19.510194"
+    }
+  ]
+}

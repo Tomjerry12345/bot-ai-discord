@@ -23,8 +23,7 @@ GROQ_API_KEY = os.environ.get('GROQ_API_KEY') or os.getenv('GROQ_API_KEY')
 # CLEAN API KEY (remove whitespace)
 if GROQ_API_KEY:
     GROQ_API_KEY = GROQ_API_KEY.strip()
-    print(f"✅ GROQ_API_KEY loaded: {GROQ_API_KEY[:10]}...{GROQ_API_KEY[-4:]}")
-    print(f"📏 API Key length: {len(GROQ_API_KEY)} chars")
+    print("✅ GROQ_API_KEY loaded successfully")
 else:
     print("⚠️ GROQ_API_KEY tidak ditemukan!")
     print("💡 Bot akan jalan tapi AI tidak akan aktif")

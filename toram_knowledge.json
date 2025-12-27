@@ -958,6 +958,118 @@
       "images": [],
       "taught_by": "ayanokoji_kyo055",
       "timestamp": "2025-12-27 08:24:14.757170"
+    },
+    {
+      "question": "xtall crysta Gurita Raksasa",
+      "answer": "**Gurita Raksasa** (xtall normal)\n**Stat**\n* 🟢 Attack MP Recovery +5\n* 🟢 Critical Rate +10\n* 🟢 Kecepatan Serangan +150\n* 🟢 Kecepatan Merapal +250\n* 🔴 Kebal Api -4%\n* 🔴 Resistensi Status Buruk -2%\n* 🔴 Reduksi DMG (Bowling) -1%\n**Tempat di peroleh**\n* 🟡 Boss Gurita Raksasa | Event Summer",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:43:56.301181"
+    },
+    {
+      "question": "xtall crysta Gravicep",
+      "answer": "**Gravicep** (xtall normal)\n**Stat**\n* 🟢 Daya Jarak Dekat +7%\n* 🟢 Accuracy +3%\n* 🟢 MaxMP +200\n* 🔴 Critical Rate -5\n* 🔴 MaxHP -100\n**Tempat di peroleh**\n* 🟡 Gravicep (Normal) (Lv 184) [Distrik Recetacula: Atap Depot]",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:44:20.738178"
+    },
+    {
+      "question": "xtall crysta Shawle",
+      "answer": "**Shawle** (xtall normal)\n**Stat**\n* 🟢 Antisipasi +5%\n* 🟢 Pertahanan Hancur +5%\n* 🟢 Accuracy +20%\n* 🟢 Aggro +10%\n**Tempat di peroleh**\n* 🟡 Shawle | Rumah Joulu: Aula",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:44:43.393351"
+    },
+    {
+      "question": "xtall crysta Carbuncle",
+      "answer": "**Carbuncle** (xtall normal)\n**Stat**\n* 🟢 MaxHP +1000\n* 🟢 Refleks +10%\n* 🔴 Dodge -10%\n**Tempat di peroleh**\n* 🟡 Carbuncle (Lv 183) [Serambi Dewa Pembangunan]",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:45:02.348505"
+    },
+    {
+      "question": "xtall crysta Lynx Mithurna",
+      "answer": "**Lynx Mithurna** (xtall normal)\n**Stat**\n* 🟢 Daya Jarak Dekat +3%\n* 🟢 Stability +3%\n* 🟢 Evasion Recharge +3%\n* 🔴 Daya Jarak Jauh -9%\n**Tempat di peroleh**\n* 🟡 Lynx Mithurna | Reruntuhan G. Mithurna: Koridor Dasar",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:45:23.480403"
+    },
+    {
+      "question": "xtall crysta Yashiro Azuki",
+      "answer": "**Yashiro Azuki** (xtall normal)\n**Stat**\n* 🟢 EXP +1%\n* 🟢 MaxHP +200\n* 🟢 MaxMP +100\n**Tempat di peroleh**\n* 🟡 Yashiro Azuki | Boss Event",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:46:10.380551"
+    },
+    {
+      "question": "xtall crysta P. Avatar",
+      "answer": "**P. Avatar** (xtall normal)\n**Stat**\n* 🟢 Nonbarter EXP +1%\n* 🟢 Kebal Api +1%\n* 🟢 Kebal Angin +1%\n* 🟢 Kebal Air +1%\n* 🟢 Kebal Bumi +1%\n* 🟢 Kebal Cahaya +1%\n* 🔴 Kebal Gelap -1%\n**Tempat di peroleh**\n* 🟡 P. Avatar | Event",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:47:02.960278"
+    },
+    {
+      "question": "xtall crysta Bos Petapa Kadal",
+      "answer": "**Bos Petapa Kadal** (xtall normal)\n**Stat**\n* 🟢 Critical Damage +3\n* 🔴 Reduksi DMG (Sekitar Pemain) -3%\n* 🔴 Reduksi DMG (Sekitar Musuh) -3%\n**Tempat di peroleh**\n* 🟡 Bos Petapa Kadal | Hutan Curonne: Area Utara 2",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:47:13.862584"
+    },
+    {
+      "question": "xtall crysta Odelon Machina",
+      "answer": "**Odelon Machina** (xtall normal)\n**Stat**\n* 🔴 Dodge -5%\n* 🔴 Evasion Recharge -5%\n* 🟢 Serangan Menghunus +10%\n**Tempat di peroleh**\n* 🟡 Odelon Machina | Pabrik Demi Machina Besar: Area 2",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:47:23.928328"
+    },
+    {
+      "question": "xtall crysta Ksatriaja",
+      "answer": "**Ksatriaja** (xtall normal)\n**Stat**\n* 🟢 ATK +1%\n* 🟢 Critical Damage +1\n* 🟢 STR +1%\n* 🔴 Accuracy -10%\n* 🔴 Critical Rate -10%\n**Tempat di peroleh**\n* 🟡 Ksatriaja | Kawah Saham",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:47:35.189622"
+    },
+    {
+      "question": "xtall crysta Super Night Mushroom",
+      "answer": "**Super Night Mushroom** (xtall normal)\n**Stat**\n* 🟢 MaxHP +500\n* 🟢 Daya Jarak Jauh +1%\n* 🟢 Daya Jarak Dekat +1%\n**Tempat di peroleh**\n* 🟡 Super Night Mushroom | Event Hanami 2017",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:47:52.794885"
+    },
+    {
+      "question": "xtall crysta Silver Roar",
+      "answer": "**Silver Roar** (xtall normal)\n**Stat**\n* 🔴 MaxHP -8%\n* 🟢 Attack MP Recovery +4\n**Tempat di peroleh**\n* 🟡 Silver Roar | Kanal Debakcy: B1",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:48:02.662090"
+    },
+    {
+      "question": "xtall crysta Scrader",
+      "answer": "**Scrader** (xtall normal)\n**Stat**\n* 🔴 Natural MP Regen -10%\n* 🟢 MaxHP +300\n* 🟢 MATK +3%\n* 🔴 Kekebalan Fisik -20%\n* 🟢 Daya Jarak Jauh +2%\n**Tempat di peroleh**\n* 🟡 Scrader | Situs Limbah Sihir: Bagian Terdalam",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:48:13.065024"
+    },
+    {
+      "question": "xtall crysta Golem Kuno",
+      "answer": "**Golem Kuno** (xtall normal)\n**Stat**\n* 🟢 MaxHP +200\n* 🟢 MDEF +5%\n* 🟢 Kekebalan Sihir +1%\n**Tempat di peroleh**\n* 🟡 Golem Kuno | Reruntuhan Zoktzda: Ruang Terbalik",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:48:23.050866"
+    },
+    {
+      "question": "xtall crysta Nurethoth",
+      "answer": "**Nurethoth** (xtall normal)\n**Stat**\n* 🟢 ATK +3%\n* 🟢 MATK +3%\n* 🔴 Kecepatan Serangan -150\n* 🔴 Kecepatan Merapal -150\n**Tempat di peroleh**\n* 🟡 Nurethoth | Gerbang Dunia Lain: Ujung",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:48:32.810824"
+    },
+    {
+      "question": "xtall crysta Mochelo",
+      "answer": "**Mochelo** (xtall normal)\n**Stat**\n* 🟢 MaxHP +5%\n* 🟢 Kecepatan Merapal +10%\n**Tempat di peroleh**\n* 🟡 Mochelo | Lereng Merapi: Area 3",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:49:28.790720"
     }
   ],
   "documents": [],
@@ -1111,6 +1223,84 @@
       "answer": "Kode buff DTE Light ada dua, yaitu: \n1. 3111999\n2. 1240000",
       "user": "ayanokoji_kyo055",
       "timestamp": "2025-12-27 08:25:50.343764"
+    },
+    {
+      "question": "siapa kamu?",
+      "answer": "Tidak tahu, karena tidak ada data relevan tentang saya di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 10:41:06.314110"
+    },
+    {
+      "question": "xtall normal apa saja",
+      "answer": "Berdasarkan database, xtall normal yang disebutkan adalah:\n\n1. **Gurita Raksasa (normal)**\n2. **Kalajengkel (normal)**\n\nJika ada xtall normal lainnya, saya tidak tahu karena tidak ada informasi tentang hal itu dalam database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:40:51.102224"
+    },
+    {
+      "question": "kalajengkel",
+      "answer": "Kalajengkel (normal) memiliki stat sebagai berikut:\n* Critical Rate +10%\n* Stability +2%\n* Daya Jarak Dekat -1%\nKalajengkel dapat diperoleh dari Kalajengkel (Lv 254) di Grojogan Milcaska: Markas Laskar.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:41:06.393264"
+    },
+    {
+      "question": "xtall normal apa saja?",
+      "answer": "Berdasarkan database, xtall normal yang ada adalah:\n\n1. Bos Petapa Kadal\n2. Gurita Raksasa\n3. Nurethoth\n4. Mochelo\n5. Gravicep\n6. Shawle\n\nItulah xtall normal yang tercatat dalam database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:49:40.535047"
+    },
+    {
+      "question": "semua list xtall normal",
+      "answer": "Berikut adalah daftar xtall normal yang ada di database:\n\n1. **Gurita Raksasa**\n2. **Gravicep**\n3. **Shawle**\n4. **Carbuncle**\n5. **Lynx Mithurna**\n6. **Yashiro Azuki**\n\nSemua xtall di atas merupakan xtall normal.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:50:03.449879"
+    },
+    {
+      "question": "semua list xtall",
+      "answer": "Berikut adalah daftar xtall yang ada di database:\n\n1. **Gurita Raksasa** (xtall normal)\n2. **Gravicep** (xtall normal)\n3. **Shawle** (xtall normal)\n4. **Carbuncle** (xtall normal)\n5. **Lynx Mithurna** (xtall normal)\n6. **Yashiro Azuki** (xtall normal)\n\nJika Anda mencari informasi lebih lanjut tentan",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:50:58.303834"
+    },
+    {
+      "question": "semua list crysta",
+      "answer": "Berikut adalah daftar xtall crysta yang ada di database:\n\n1. **Kalajengkel (normal)**\n2. **Arbogazella (senjata)**\n3. **Jeandoux (senjata)**\n4. **Gurita Raksasa (xtall normal)**\n5. **Gravicep (xtall normal)**\n\nJika ada pertanyaan lain, silakan tanya!",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:51:12.646267"
+    },
+    {
+      "question": "semua list crysta xtall normal",
+      "answer": "Berikut adalah daftar xtall crysta normal yang ada di database:\n\n1. **Gurita Raksasa**\n2. **Gravicep**\n3. **Shawle**\n4. **Carbuncle**\n5. **Lynx Mithurna**\n6. **Yashiro Azuki**\n\nSemua xtall crysta di atas merupakan xtall normal.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:51:38.685663"
+    },
+    {
+      "question": "tampilkan 10 list xtall normal",
+      "answer": "Berikut 5 xtall normal yang ada di database:\n1. **Gurita Raksasa**\n2. **Gravicep**\n3. **Shawle**\n4. **Carbuncle**\n5. **Lynx Mithurna**\n6. **Yashiro Azuki**\n\nTidak tahu xtall normal lainnya karena tidak ada di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:52:23.958111"
+    },
+    {
+      "question": "mochello",
+      "answer": "Tidak tahu tentang mochello karena tidak ada data relevan di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:52:38.322719"
+    },
+    {
+      "question": "mochelo",
+      "answer": "Mochelo (xtall normal) memiliki stat:\n- MaxHP +5%\n- Kecepatan Merapal +10%\nDan dapat diperoleh di Mochelo | Lereng Merapi: Area 3.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:52:45.288982"
+    },
+    {
+      "question": "mochelo xtall normal kan kenapa tidak kamu tampilkan di xtall normal?",
+      "answer": "Mochelo xtall normal memang ada di database. Statnya adalah:\n* 🟢 MaxHP +5%\n* 🟢 Kecepatan Merapal +10%\nDan dapat diperoleh di:\n* 🟡 Mochelo | Lereng Merapi: Area 3\n\nSaya tidak tahu mengapa informasi ini tidak ditampilkan sebelumnya.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:53:26.973165"
+    },
+    {
+      "question": "semua xtall normal",
+      "answer": "Berikut adalah daftar xtall normal yang ada di database:\n\n1. **Gurita Raksasa**\n2. **Gravicep**\n3. **Shawle**\n4. **Carbuncle**\n5. **Lynx Mithurna**\n6. **Yashiro Azuki**\n\nSemua xtall di atas adalah xtall normal.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 11:53:44.750961"
     }
   ]
 }

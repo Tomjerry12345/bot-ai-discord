@@ -611,6 +611,7 @@ async def on_ready():
     # Start background tasks
     asyncio.create_task(auto_save_task())
     asyncio.create_task(heartbeat_monitor())
+    asyncio.create_task(self_ping_task())
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -732,8 +733,6 @@ if __name__ == "__main__":
     else:
         print("🚀 Starting bot with enhanced keep-alive...\n")
         try:
-            # Start self-ping task
-            asyncio.get_event_loop().create_task(self_ping_task())
             bot.run(DISCORD_TOKEN)
         except KeyboardInterrupt:
             print("\n👋 Bot stopped by user")

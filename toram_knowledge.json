@@ -435,13 +435,6 @@
       "is_detailed": false
     },
     {
-      "question": "kode buff dte light",
-      "answer": "3111999",
-      "taught_by": "TXT_IMPORT",
-      "timestamp": "2025-12-25 15:39:51.617567",
-      "is_detailed": false
-    },
-    {
       "question": "kode buff dte neutral",
       "answer": "1014999",
       "taught_by": "TXT_IMPORT",
@@ -853,6 +846,118 @@
       "taught_by": "ayanokoji_kyo055",
       "timestamp": "2025-12-25 21:40:44.201730",
       "is_detailed": true
+    },
+    {
+      "question": "senjata Sarung Tinju Don",
+      "answer": "Sarung Tinju Don\nUnsur: Cahaya\nStat\n🟢 ATK +10%\n🟢 Critical Damage +10%\n🟢 Critical Rate +45\n🟢 MaxHP +10000\n🟢 Kekebalan Fisik +40%\n🟢 Kekebalan Sihir +20%\nTempat di peroleh\n🟡 Don Profundo | Kawasan Terlantar: Puncak Reruntuhan\n🟡 Pandai Besi | Level 241-270",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:33:29.216531"
+    },
+    {
+      "question": "Zirah Jubah Pendeta Air",
+      "answer": "Zirah Jubah Pendeta Air\nStat\n🟢 MaxHP +25%\n🟢 Kekebalan Fisik +25%\n🟢 Kekebalan Sihir +25%\n🟢 Kecepatan Merapal +600\n🟢 Kecepatan Merapal +40%\n🟢 Kebal Air +20%\n🟢 Dengan Katana: Critical Rate +40%\nTempat di peroleh\n🟡 Zapo | Kepulauan Puerta: Portal\n🟡 Pandai Besi Zirah | Level 241-270",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:34:03.455999"
+    },
+    {
+      "question": "Cincin Gendang Tunggul",
+      "answer": "Cincin Gendang Tunggul\nStat\n🟢 MaxHP +25%\n🟢 Critical Rate +25\n🟢 Aggro +25%\nTempat di peroleh\n🟡 Bombor (Lv 205 | Lv 208)",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:34:27.948852"
+    },
+    {
+      "question": "Skill Build BS Vit Knuckle",
+      "answer": "**Skill Build BS Vit Knuckle** :\n\n[Skill Pedang]\n[image.png](https://postimg.cc/SncgnC89)\n[Skill sihir]\n[image.png](https://postimg.cc/bDVT7TX9)\n[Skill Samurai]\n[image.png](https://postimg.cc/0Kxkqpp1)\n[Skill Beladiri]\n[Whats-App-Image-2025-12-27-at-10-50-52.jpg](https://postimg.cc/gXcwVFTR)\n[Skill Kesatria]\n[Whats-App-Image-2025-12-27-at-10-50-13.jpg](https://postimg.cc/N5ZrWn53)\n[Skill Perisai]\n[image.png](https://postimg.cc/CdX11qSr)\n[Skill Partisan]\n[image.png](https://postimg.cc/HJDs2DV2)\nSkill support\n[image.png](https://postimg.cc/Lh64vV8R)\n[Skill Pandai Besi]\n[image.png](https://postimg.cc/FYch1WDf)\n[Skill Alkimia]\n[image.png](https://postimg.cc/zLF5FLmG)",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:37:15.661611"
+    },
+    {
+      "question": "cara dapat buku atau buka skill partisan",
+      "answer": "Bertanya di npc **Lepage** di **Hora Diomedea**\n\n[image.png](https://postimg.cc/pmZ5pL0f)",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:40:23.858484"
+    },
+    {
+      "question": "Tempat levelling toram online 1-199 rute susah banyak best exp",
+      "answer": "Level 1-40\n▪ Mob: Pova\n▪ Unsur: Bumi\n▪ Lokasi: Ngarai lonogo\nLevel 40-55\n▪ Mob: Bone Dragonewt\n▪ Unsur: Gelap\n▪ Lokasi: Makam Ratu Kuno: Area 1\nLevel 55-64\n▪ Mob: Parasitized Dog\n▪ Unsur: Gelap\n▪ Lokasi: Tanah Gelap: Area 2\nLevel 64-74 \n▪ Mob: Flare Volg (Nightmare)\n▪ Unsur: Api\n▪ Lokasi: Lereng Merapi: Jejak lava\nLevel 74-90 \n▪ Mob: Boss Roga (Nightmare)\n▪ Unsur: Netral\n▪ Lokasi: Gua Bawah Tanah Saham: Ujung\nLevel 90-99\n▪ Mob: Naga Sabana Yelb (Nighmare)\n▪ Unsur: Bumi\n▪ Lokasi: Desa Albatif\nLevel 99-110 \n▪ Mob: Scrader (Nightmare)\n▪ Unsur: Gelap\n▪ Lokasi: Situs Limbah Sihir: Bagian Terdalam\nLevel 110-118 \n▪ Mob: Naga Sabana Yelb (Ultimate)\n▪ Unsur: Bumi\n▪ Lokasi: Desa Albatif\nLevel 118-125 \n▪ Mob: Memecoleous (Nightmare)\n▪ Unsur: Netral\n▪ Lokasi: Istana Gelap: Area 2\nLevel 125-133 \n▪ Mob: Scrader (Ultimate)\n▪ Unsur: Gelap\n▪ Lokasi: Situs Limbah Sihir: Bagian Terdalam\nLevel 133-148 \n▪ Mob: Memecoleous (Ultimate)\n▪ Unsur: Netral\n▪ Lokasi: Istana Gelap: Area 2\nLevel 148-162 \n▪ Mob: Komandan Golem\n▪ Unsur: Gelap\n▪ Lokasi: Mansion Lufenas: Pintu Masuk\nLevel 162-179 \n▪ Mob: Venena Coenubia (Nightmare)\n▪ Unsur: Api\n▪ Lokasi: Istana Ultimea: Takhta\nLevel 179-182 \n▪ Mob: Altoblepas\n▪ Unsur: Netral\n▪ Lokasi: Dataran Rokoko\nLevel 182-199 \n▪ Mob: Venena Coenubia (Ultimate)\n▪ Unsur: Api\n▪ Lokasi: Istana Ultimea: Takhta",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:41:20.052157"
+    },
+    {
+      "question": "Tempat levelling toram online 199-310 rute susah banyak best exp",
+      "answer": "Level 199-213 \n▪ Mob: Finstern si Naga Kegelapan (Ultimate)\n▪ Unsur: Gelap\n▪ Lokasi: Kuil Naga Kegelapan: Dekat Puncak\nLevel 213-220 \n▪ Mob: Kuzto (Ultimate)\n▪ Unsur: Bumi\n▪ Lokasi: Distrik Labilans: Alun-alun\nLevel 220-228\n▪ Mob: Espectro (Ultimate)\n▪ Unsur: Dark\n▪ Lokasi: Lembah Arche: Area 1\nLevel 228-244\n▪ Mob: Arachidemon (Ultimate)\n▪ Unsur: Dark\n▪ Lokasi:  Lembah Arche: Area Terdalam\nLevel 232-245\n▪ Mob: Bullamius (Ultimate)\n▪ Unsur: Bumi\n▪ Lokasi: Gudang Material: Area 2\nLevel 244-253\n▪ Mob: Ferzen si Naga Batu (Ultimate)\n▪ Unsur: Bumi\n▪ Lokasi: Hutan Lindung: Pohon Raksasa\nLevel 253-266\n▪ Mob: Naga Penyamar Mimyugon (Nightmare)\n▪ Unsur: Bumi\n▪ Lokasi: Zona Kemudi: Area Kokpit\nLevel 266-272\n▪ Mob: Trus\n▪ Unsur: Api\n▪ Lokasi: Zona Mekanisme Penggerak: Tangki Daya\nLevel 272-286\n▪ Mob: Naga Penyamar Mimyugon (Ultimate)\n▪ Unsur: Bumi\n▪ Lokasi: Zona Kemudi: Area Kokpit\nLevel 286-296\n▪ Mob: Capo Profundo\n▪ Unsur: Air\n▪ Lokasi: Kawasan Terlantar: Area 3\nLevel 296-310\n▪ Mob: Wiltileaf\n▪ Unsur: Gelap\n▪ Lokasi: Reruntuhan Desa Eumano: Area 2\nLevel 296-310\n▪ Mob: Castilla\n▪ Unsur: fase 1 - netral | fase 2 - netral | fase 3 - angin | fase 4 - netral | fase 5 - angin | fase 6 api\n▪ Lokasi: El scaro",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:42:27.244893"
+    },
+    {
+      "question": "Tempat levelling toram online 1-199 rute mudah ramai",
+      "answer": "Level 1-40\n▪ Mob: Pova\n▪ Unsur: Bumi\n▪ Lokasi: Ngarai lonogo\nLevel 40-55\n▪ Mob: Bone Dragonewt\n▪ Unsur: Gelap\n▪ Lokasi: Makam Ratu Kuno: Area 1\nLevel 55-63 \n▪ Mob: Flare Volg (Hard)\n▪ Unsur: Api\n▪ Lokasi: Lereng Merapi: Jejak lava\nLevel 63-79 \n▪ Mob: Flare Volg (Nightmare)\n▪ Unsur: Api\n▪ Lokasi: Lereng Merapi: Jejak lava\nLevel 70-79 \n▪ Mob: Pendekar Beratopeng (Hard)\n▪ Unsur: Api\n▪ Lokasi: Tanah Pertanian: Tanah Tinggi\nLevel 79-96 \n▪ Mob: Pendekar Beratopeng (Nightmare)\n▪ Unsur: Api\n▪ Lokasi: Tanah Pertanian: Tanah Tinggi\nLevel 96-112 \n▪ Mob: Don yeti\n▪ Unsur: Bumi\n▪ Lokasi: Lembah Es Polde\nLevel 112-121 \n▪ Mob: Cerberus (Nightmare)\n▪ Unsur: Air\n▪ Lokasi: Mata Air Kelahiran: Puncak\nLevel 121-129 \n▪ Mob: Dukun lapin\n▪ Unsur: Netral\n▪ Lokasi: Sungai Kegelapan\nLevel 129-146 \n▪ Mob: Cerberus (ultimate)\n▪ Unsur: Air\n▪ Lokasi: Mata Air Kelahiran: Puncak\nLevel 146-162 \n▪ Mob: Komandan Golem\n▪ Unsur: Gelap\n▪ Lokasi: Mansion Lufenas: Pintu Masuk\nLevel 162-179 \n▪ Mob: Venena Coenubia (Nightmare)\n▪ Unsur: Api\n▪ Lokasi: Istana Ultimea: Takhta\nLevel 179-182 \n▪ Mob: Altoblepas\n▪ Unsur: Netral\n▪ Lokasi: Dataran Rokoko\nLevel 182-199 \n▪ Mob: Venena Coenubia (Ultimate)\n▪ Unsur: Api\n▪ Lokasi: Istana Ultimea: Takhta",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:43:56.883202"
+    },
+    {
+      "question": "combo skill bs vit knuckle",
+      "answer": "**Combo 1 : ** [image.png](https://postimg.cc/KkY7DsqN)\n**Combo 2: ** [image.png](https://postimg.cc/cgKgHqk9)",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:45:01.674381"
+    },
+    {
+      "question": "Perisai Don",
+      "answer": "**Perisai Don**\n**Stat**\n* 🟢 Guard Recharge +25%\n* 🟢 Guard Power +36%\n* 🟢 MaxHP +10000\n* 🟢 Dengan Zirah Ringan: Critical Rate +5\n* 🟢 Aggro +50%\n**Tempat di peroleh**\n* 🟡 Don Profundo | Kawasan Terlantar: Puncak Reruntuhan\n* 🟡 Pandai Besi Perisai | Level 241-270",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:45:35.119299"
+    },
+    {
+      "question": "Perisai Maple",
+      "answer": "**Perisai Maple**\n**Stat**\n* 🟢 Guard Recharge +40%\n* 🟢 Guard Power +40%\n* 🟢 VIT +10%\n* 🟢 Kekebalan Fisik +20%\n* 🟢 Kekebalan Sihir +20%\n* 🟢 Reduksi Ledakan +50%\n* 🔴 MaxMP -100\n* 🔴 Dodge -100%\n**Tempat di peroleh**\n* 🟡 Event Maple",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:45:50.341720"
+    },
+    {
+      "question": "build bs vit tank knuckle",
+      "answer": "**Stat** : Full teach + Full vit\n**Build** :\n- **Senjata** : Sarung tinju don\n**Xtall senjata** : Limacina\n- **Perisai** : Perisai maple, Perisai don (Wajib +S)\n- **Armor** : Jubah pendeta air (Wajib +S)\n**Xtall armor** : Dr. leonardo II, Limacina\n- **Topi** : Bibir menawan, Lentera kegelapan malam (Wajib +S)\n**Xtall topi** : Gordo, Amargon\n- **Cincin** : Gendang tunggul\n**Xtall cincin** : Etoise, Lixi hitam",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:48:01.637279"
+    },
+    {
+      "question": "bibir menawan",
+      "answer": "**Bibir Menawan**\n**Stat**\n* 🟢 Kekebalan Fisik +40%\n* 🟢 Resistensi Status Buruk +20%\n* 🟢 Kecepatan Aksi +10%\n**Tempat di peroleh**\n* 🟡 Pandai Besi Perkakas Tambahan | Level 241-270",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:48:46.624646"
+    },
+    {
+      "question": "Lentera Kegelapan Malam",
+      "answer": "**Lentera Kegelapan Malam**\n**Stat**\n* 🟢 MaxHP: +30%\n* 🟢 Critical Rate: +20\n* 🟢 Ailment Resistance: +25%\n* 🟢 Aggro: +35%\n**Tempat di peroleh**\n* 🟡 Pandai Besi | Event Halloween",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:49:05.093401"
+    },
+    {
+      "question": "cara instant cloning",
+      "answer": "scroll ninja 0/1.5 butuh csdp 1k\nscroll ninja 0/1.4 butuh csdp 1.6k\nscroll ninja 0/1.3 butuh csdp 2.2k\nscroll ninja 0/1.2 butuh csdp 2.8k\nscroll ninja 0/1.1 butuh csdp 3.4k",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:52:49.167848"
+    },
+    {
+      "question": "kode buff dte light",
+      "answer": "1240000",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 08:24:14.757170"
     }
   ],
   "documents": [],
@@ -916,6 +1021,96 @@
       "answer": "Tidak tahu, karena tidak ada data relevan tentang \"toram\" di database.",
       "user": "ayanokoji_kyo055",
       "timestamp": "2025-12-26 14:08:18.622309"
+    },
+    {
+      "question": "lentera kegelapan",
+      "answer": "Tidak tahu, karena tidak ada data relevan tentang \"lentera kegelapan\" di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:25:45.227374"
+    },
+    {
+      "question": "lentera kegelapan malam",
+      "answer": "Tidak tahu, karena tidak ada data relevan di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:26:05.973748"
+    },
+    {
+      "question": "bibir menawan",
+      "answer": "Tidak tahu, karena tidak ada data relevan tentang \"bibir menawan\" di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:26:19.498354"
+    },
+    {
+      "question": "sarung tinju don",
+      "answer": "Sarung Tinju Don adalah senjata dengan unsur cahaya. Statnya adalah:\n- ATK +10%\n- Critical Damage +10%\n- Critical Rate +45\n- MaxHP +10000\n- Kekebalan Fisik +40%\n- Kekebalan Sihir +20%\nBisa diperoleh di Don Profundo | Kawasan Terlantar: Puncak Reruntuhan atau Pandai Besi | Level 241-270.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:33:37.565762"
+    },
+    {
+      "question": "build bs vit",
+      "answer": "**Stat** : Full teach + Full vit\n**Build** :\n- **Senjata** : Sarung tinju don\n**Xtall senjata** : Limacina\n- **Perisai** : Perisai maple, Perisai don (Wajib +S)\n- **Armor** : Jubah pendeta air (Wajib +S)\n**Xtall armor** : Dr. leonardo II, Limacina\n- **Topi** : Bibir menawan, Lentera kegelapan malam ",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:50:03.348791"
+    },
+    {
+      "question": "combo bs vit",
+      "answer": "Combo BS Vit Knuckle ada 2, yaitu:\n**Combo 1 : ** [image.png](https://postimg.cc/KkY7DsqN)\n**Combo 2: ** [image.png](https://postimg.cc/cgKgHqk9)",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:50:12.730825"
+    },
+    {
+      "question": "skill bs vit",
+      "answer": "**Skill Build BS Vit Knuckle** :\n\n[Skill Pedang]\n[image.png](https://postimg.cc/SncgnC89)\n[Skill sihir]\n[image.png](https://postimg.cc/bDVT7TX9)\n[Skill Samurai]\n[image.png](https://postimg.cc/0Kxkqpp1)\n[Skill Beladiri]\n[Whats-App-Image-2025-12-27-at-10-50-52.jpg](https://postimg.cc/gXcwVFTR)\n[Skill ",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:50:19.699084"
+    },
+    {
+      "question": "instant cloning",
+      "answer": "Tidak tahu tentang instant cloning karena tidak ada data relevan di database.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:50:34.444432"
+    },
+    {
+      "question": "1.2 butuh cspd berapa biar instant cloning",
+      "answer": "Untuk scroll ninja 0/1.2, dibutuhkan csdp sebesar 2.8k agar bisa instant cloning.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:53:14.728429"
+    },
+    {
+      "question": "perisai maple",
+      "answer": "**Perisai Maple**\n**Stat**\n* Guard Recharge +40%\n* Guard Power +40%\n* VIT +10%\n* Kekebalan Fisik +20%\n* Kekebalan Sihir +20%\n* Reduksi Ledakan +50%\n* MaxMP -100\n* Dodge -100%\n**Tempat di peroleh**\n* Event Maple",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 07:53:30.855418"
+    },
+    {
+      "question": "kode buff cr",
+      "answer": "Berdasarkan database, kode buff crt ada beberapa, yaitu: \n- 5010098\n- 7010086\n- 3010777\n- 1100000\n\nNamun, tidak ada informasi tentang kode buff \"cr\" secara spesifik. Kode yang ada adalah \"crt\", bukan \"cr\". Jadi, jawabannya adalah tidak tahu untuk kode buff \"cr\".",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 08:20:01.596699"
+    },
+    {
+      "question": "lentera",
+      "answer": "Lentera Kegelapan Malam adalah sebuah item yang memiliki stat sebagai berikut:\n* 🟢 MaxHP: +30%\n* 🟢 Critical Rate: +20\n* 🟢 Ailment Resistance: +25%\n* 🟢 Aggro: +35%\nItem ini dapat diperoleh di Pandai Besi pada Event Halloween. Selain itu, Lentera Kegelapan Malam juga digunakan dalam build BS Vit Tank ",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 08:20:32.822345"
+    },
+    {
+      "question": "kode buff dte light",
+      "answer": "Kode buff DTE Light adalah 3111999. Jawaban ini didasarkan pada informasi yang ada di database, di mana terdapat dua pertanyaan yang sama dengan jawaban yang sama, yaitu 3111999.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 08:21:01.529369"
+    },
+    {
+      "question": "kode buff dte light",
+      "answer": "Kode buff DTE Light ada beberapa, yaitu: 3111999, 3111999, dan 1240000.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 08:24:30.478236"
+    },
+    {
+      "question": "kode buff dte light",
+      "answer": "Kode buff DTE Light ada dua, yaitu: \n1. 3111999\n2. 1240000",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-27 08:25:50.343764"
     }
   ]
 }

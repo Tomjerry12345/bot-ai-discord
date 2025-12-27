@@ -24,4 +24,7 @@ __pycache__/
 Thumbs.db
 
 start.bat
-main-first.py
+main-v1.py
+main-v2.py
+toram_knowledge.json
+.replit

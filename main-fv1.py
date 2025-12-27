@@ -4,15 +4,11 @@ import json
 import os
 from datetime import datetime
 import aiohttp
-import asyncio
-import sys
-import signal
-import atexit
-
-# ============================================
-# ENVIRONMENT SETUP
+import asyncio# ============================================
+# ENVIRONMENT SETUP - Replit Compatible
 # ============================================
 
+# Coba load dari .env (untuk local dev)
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -20,9 +16,11 @@ try:
 except ImportError:
     print("📦 dotenv not found, using Replit Secrets")
 
+# Validate tokens
 DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN') or os.getenv('DISCORD_TOKEN')
 GROQ_API_KEY = os.environ.get('GROQ_API_KEY') or os.getenv('GROQ_API_KEY')
 
+# CLEAN API KEY (remove whitespace)
 if GROQ_API_KEY:
     GROQ_API_KEY = GROQ_API_KEY.strip()
     print("✅ GROQ_API_KEY loaded successfully")
@@ -44,95 +42,51 @@ bot = commands.Bot(command_prefix='!', intents=intents, help_command=None)
 
 # Storage
 KNOWLEDGE_FILE = 'toram_knowledge.json'
-MAX_CONVERSATIONS = 100
 
 def load_knowledge():
     if os.path.exists(KNOWLEDGE_FILE):
-        try:
-            with open(KNOWLEDGE_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except:
-            print("⚠️ Error loading knowledge, creating new")
-            return {"qa_pairs": [], "documents": [], "conversations": []}
+        with open(KNOWLEDGE_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
     return {"qa_pairs": [], "documents": [], "conversations": []}
 
 def save_knowledge(knowledge):
-    try:
-        if len(knowledge["conversations"]) > MAX_CONVERSATIONS:
-            knowledge["conversations"] = knowledge["conversations"][-MAX_CONVERSATIONS:]
-        
-        with open(KNOWLEDGE_FILE, 'w', encoding='utf-8') as f:
-            json.dump(knowledge, f, ensure_ascii=False, indent=2)
-    except Exception as e:
-        print(f"⚠️ Error saving knowledge: {e}")
+    with open(KNOWLEDGE_FILE, 'w', encoding='utf-8') as f:
+        json.dump(knowledge, f, ensure_ascii=False, indent=2)
 
 knowledge_base = load_knowledge()
 
 # ============================================
-# AUTO-SAVE & CLEANUP HANDLERS
+# SIMPLE SEARCH - NO FILTERING
 # ============================================
 
-def cleanup():
-    """Save data before exit"""
-    print("\n💾 Saving data before exit...")
-    save_knowledge(knowledge_base)
-    print("✅ Data saved successfully!")
-
-def signal_handler(sig, frame):
-    """Handle termination signals"""
-    print(f"\n⚠️ Received signal {sig}, shutting down gracefully...")
-    cleanup()
-    sys.exit(0)
-
-# Register cleanup handlers
-signal.signal(signal.SIGINT, signal_handler)
-signal.signal(signal.SIGTERM, signal_handler)
-atexit.register(cleanup)
-
-# Auto-save every 10 minutes
-async def auto_save_task():
-    """Auto-save knowledge base periodically"""
-    await bot.wait_until_ready()
-    while not bot.is_closed():
-        await asyncio.sleep(600)  # 10 minutes
-        save_knowledge(knowledge_base)
-        print("💾 Auto-saved knowledge base")
-
-# ============================================
-# WATCHDOG - Monitor Bot Health
-# ============================================
-
-last_heartbeat = datetime.now()
-
-async def heartbeat_monitor():
-    """Monitor bot connection health"""
-    global last_heartbeat
-    await bot.wait_until_ready()
+# def search_knowledge(query):
+#     """Simple search - kirim semua data ke AI, biar AI yang filter"""
+#     results = []
+#     query_lower = query.lower()
     
-    while not bot.is_closed():
-        try:
-            # Check if bot is still responsive
-            await bot.wait_for('ready', timeout=60)
-            last_heartbeat = datetime.now()
-            print(f"💓 Heartbeat OK - {last_heartbeat.strftime('%H:%M:%S')}")
-        except asyncio.TimeoutError:
-            print("⚠️ Heartbeat timeout! Bot may be disconnected")
-        except Exception as e:
-            print(f"❌ Heartbeat error: {e}")
+#     # Cari semua yang ada keyword-nya (minimal match)
+#     for qa in knowledge_base["qa_pairs"]:
+#         question_lower = qa["question"].lower()
+#         answer_lower = qa["answer"].lower()
         
-        await asyncio.sleep(180)  # Check every 3 minutes
-
-# ============================================
-# SEARCH WITH SCORING
-# ============================================
+#         # Check if ANY word from query exists
+#         if any(word in question_lower or word in answer_lower 
+#                for word in query_lower.split()):
+#             results.append({
+#                 "question": qa["question"],
+#                 "answer": qa["answer"],
+#                 "images": qa.get("images", [])
+#             })
+    
+#     return results
 
 def search_knowledge(query):
     """Search dengan scoring dan limit hasil"""
     query_lower = query.lower()
-    query_words = [w for w in query_lower.split() if len(w) > 2]
+    query_words = [w for w in query_lower.split() if len(w) > 2]  # Skip kata pendek
     
     if not query_words:
-        return knowledge_base["qa_pairs"][:20]
+        return knowledge_base["qa_pairs"][:20]  # Fallback
     
     scored_results = []
     
@@ -141,11 +95,13 @@ def search_knowledge(query):
         answer_lower = qa["answer"].lower()
         
         score = 0
+        # Exact match = prioritas tertinggi
         if query_lower in question_lower:
             score += 10
         if query_lower in answer_lower:
             score += 5
             
+        # Word match
         for word in query_words:
             if word in question_lower:
                 score += 3
@@ -155,15 +111,81 @@ def search_knowledge(query):
         if score > 0:
             scored_results.append((score, qa))
     
+    # Sort dan limit ke 25 hasil terbaik (Replit friendly)
     scored_results.sort(reverse=True, key=lambda x: x[0])
-    return [item[1] for item in scored_results[:20]]
+    return [item[1] for item in scored_results[:25]]
+
 
 # ============================================
-# AI RESPONSE - OPTIMIZED
+# AI RESPONSE - FULL CONTROL TO AI
 # ============================================
+
+# async def get_ai_response(question, all_data):
+#     """AI yang tentukan context, filter, dan format sendiri"""
+#     groq_api_key = os.environ.get("GROQ_API_KEY")
+    
+#     if not groq_api_key:
+#         if all_data:
+#             return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+#         return "⚠️ GROQ_API_KEY belum diset!"
+    
+#     # Kirim SEMUA data mentah, tanpa filter apapun
+#     context_text = "\n\n".join([
+#         f"Q: {item['question']}\nA: {item['answer']}"
+#         for item in all_data
+#     ]) if all_data else "Database kosong"
+    
+#     try:
+#         async with aiohttp.ClientSession() as session:
+#             headers = {
+#                 "Authorization": f"Bearer {groq_api_key}",
+#                 "Content-Type": "application/json"
+#             }
+            
+#             data = {
+#                 "model": "llama-3.3-70b-versatile",
+#                 "messages": [
+#                     {
+#                         "role": "user", 
+#                         "content": f"""Kamu AI helper game Toram Online.
+
+# DATABASE:
+# {context_text}
+
+# PERTANYAAN USER: {question}
+
+# INSTRUKSI:
+# - Analisis sendiri data mana yang relevan
+# - Filter sendiri info yang perlu ditampilkan
+# - Format output sesuai kebutuhan (list/detail/singkat)
+# - Jika user minta "tanpa X" atau "jangan Y", skip bagian itu
+# - Jawab natural dan to the point"""
+#                     }
+#                 ],
+#                 "temperature": 0.3,
+#                 "max_tokens": 2000
+#             }
+            
+#             async with session.post(
+#                 "https://api.groq.com/openai/v1/chat/completions",
+#                 headers=headers,
+#                 json=data
+#             ) as resp:
+#                 if resp.status == 200:
+#                     result = await resp.json()
+#                     return result['choices'][0]['message']['content']
+#                 else:
+#                     if all_data:
+#                         return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+#                     return "❌ Error API"
+#     except Exception as e:
+#         if all_data:
+#             return f"🤖 Dari database:\n\n{all_data[0]['answer']}\n\n_(AI offline)_"
+#         return f"❌ Error: {str(e)}"
 
 async def get_ai_response(question, all_data):
-    """AI response dengan error handling yang lebih baik"""
+    """AI response dengan batasan ketat untuk Replit"""
+    # Use global GROQ_API_KEY
     groq_api_key = GROQ_API_KEY
     
     if not groq_api_key:
@@ -171,19 +193,24 @@ async def get_ai_response(question, all_data):
             return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
         return "⚠️ GROQ_API_KEY belum diset!"
     
+    # CLEAN API KEY - hapus whitespace tersembunyi
     groq_api_key = groq_api_key.strip().replace('\n', '').replace('\r', '')
     
+    # Validate API key format
     if len(groq_api_key) < 40:
+        print(f"⚠️ API key terlalu pendek: {len(groq_api_key)} chars")
         if all_data:
-            return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+            return f"🤖 Dari database:\n\n{all_data[0]['answer']}\n\n_⚠️ API key invalid_"
         return "⚠️ API key tidak valid!"
     
-    max_items = 10
+    # LIMIT data yang dikirim (penting untuk Replit!)
+    max_items = 15  # Kurangi jadi 15 untuk lebih stabil
     limited_data = all_data[:max_items]
     
+    # Build context dengan batasan karakter
     context_parts = []
     total_chars = 0
-    max_context_chars = 1500
+    max_context_chars = 2000  # Kurangi jadi 2000
     
     for item in limited_data:
         entry = f"Q: {item['question']}\nA: {item['answer']}"
@@ -195,7 +222,8 @@ async def get_ai_response(question, all_data):
     context_text = "\n\n".join(context_parts) if context_parts else "Tidak ada data relevan"
     
     try:
-        timeout = aiohttp.ClientTimeout(total=25)
+        # Timeout ketat untuk Replit
+        timeout = aiohttp.ClientTimeout(total=15)
         
         async with aiohttp.ClientSession(timeout=timeout) as session:
             headers = {
@@ -203,8 +231,9 @@ async def get_ai_response(question, all_data):
                 "Content-Type": "application/json"
             }
             
+            # Coba model yang lebih stabil dulu
             data = {
-                "model": "llama-3.3-70b-versatile",
+                "model": "llama-3.3-70b-versatile",  # GANTI MODEL
                 "messages": [
                     {
                         "role": "system",
@@ -221,7 +250,7 @@ Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
                     }
                 ],
                 "temperature": 0.2,
-                "max_tokens": 500,
+                "max_tokens": 600,  # Kurangi jadi 600
                 "top_p": 0.9
             }
             
@@ -230,37 +259,51 @@ Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
                 headers=headers,
                 json=data
             ) as resp:
+                # Debug log
+                print(f"📡 Groq API Response Status: {resp.status}")
                 
                 if resp.status == 200:
                     result = await resp.json()
                     answer = result['choices'][0]['message']['content']
-                    return answer[:1500] if len(answer) > 1500 else answer
+                    return answer[:2000] if len(answer) > 2000 else answer
                     
                 elif resp.status == 401:
+                    error_text = await resp.text()
+                    print(f"🔑 Auth Error: {error_text}")
                     if limited_data:
-                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_🔑 API key bermasalah_"
-                    return "🔑 API key tidak valid!"
+                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_🔑 API key bermasalah, gunakan data lokal_"
+                    return "🔑 API key tidak valid! Cek di Groq Console."
                     
                 elif resp.status == 429:
+                    print("⚠️ Rate limit Groq API")
                     if limited_data:
                         return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ API rate limit_"
-                    return "⚠️ API rate limit!"
+                    return "⚠️ API rate limit, coba lagi sebentar!"
                     
                 else:
+                    error_text = await resp.text()
+                    print(f"❌ API Error {resp.status}: {error_text[:300]}")
                     if limited_data:
                         return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}"
                     return f"❌ API Error ({resp.status})"
                     
     except asyncio.TimeoutError:
+        print("⏱️ Timeout - Replit connection slow")
         if limited_data:
             return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⏱️ Koneksi lambat_"
         return "⏱️ Timeout! Coba lagi."
         
-    except Exception as e:
-        print(f"❌ AI Error: {str(e)[:200]}")
+    except aiohttp.ClientError as e:
+        print(f"❌ Network error: {str(e)}")
         if limited_data:
-            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}"
-        return "❌ Error, coba lagi!"
+            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_❌ Network error_"
+        return "❌ Koneksi bermasalah!"
+        
+    except Exception as e:
+        print(f"❌ Unexpected error: {type(e).__name__}: {str(e)}")
+        if limited_data:
+            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ Fallback mode_"
+        return f"❌ Error: {str(e)[:100]}"
 
 # ============================================
 # IMPORT FROM TXT
@@ -269,35 +312,32 @@ Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
 def load_qa_from_txt(file_path):
     """Load Q&A dari file txt"""
     if not os.path.exists(file_path):
+        print(f"❌ File tidak ditemukan: {file_path}")
         return 0
 
     added = 0
-    try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                line = line.strip()
-                if not line or line.startswith('#'):
-                    continue
-                if '|' not in line:
-                    continue
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '|' not in line:
+                continue
 
-                question, answer = line.split('|', 1)
-                question = question.strip()
-                answer = answer.strip()
+            question, answer = line.split('|', 1)
+            question = question.strip()
+            answer = answer.strip()
 
-                if question and answer:
-                    knowledge_base["qa_pairs"].append({
-                        "question": question,
-                        "answer": answer,
-                        "taught_by": "TXT_IMPORT",
-                        "timestamp": str(datetime.now())
-                    })
-                    added += 1
+            if question and answer:
+                knowledge_base["qa_pairs"].append({
+                    "question": question,
+                    "answer": answer,
+                    "taught_by": "TXT_IMPORT",
+                    "timestamp": str(datetime.now())
+                })
+                added += 1
 
-        save_knowledge(knowledge_base)
-    except Exception as e:
-        print(f"Error importing txt: {e}")
-    
+    save_knowledge(knowledge_base)
     return added
 
 @bot.command(name='importtxt')
@@ -316,28 +356,79 @@ async def import_txt(ctx, filename: str = "data_qa.txt"):
 # COMMAND: TANYA
 # ============================================
 
+# @bot.command(name='tanya', aliases=['ask', 'ai', 't'])
+# async def ask_ai(ctx, *, question):
+#     """Tanya ke AI"""
+#     async with ctx.typing():
+#         # Get all matching data (no filtering)
+#         all_data = search_knowledge(question)
+        
+#         # Collect images
+#         images_found = []
+#         if all_data:
+#             for item in all_data:
+#                 if 'images' in item and item['images']:
+#                     images_found.extend(item['images'])
+        
+#         # AI process everything
+#         response = await get_ai_response(question, all_data)
+        
+#         # Create embed
+#         embed = discord.Embed(
+#             title="🤖 Toram AI Helper",
+#             description=response[:4000],
+#             color=0x5865F2,
+#             timestamp=datetime.now()
+#         )
+        
+#         # Add images
+#         if images_found:
+#             embed.set_image(url=images_found[0])
+#             if len(images_found) > 1:
+#                 embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar")
+#             else:
+#                 embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ 1 gambar")
+#         else:
+#             embed.set_footer(text=f"Ditanya oleh {ctx.author.name}")
+        
+#         await ctx.reply(embed=embed, mention_author=False)
+        
+#         # Save conversation
+#         knowledge_base["conversations"].append({
+#             "question": question,
+#             "answer": response[:500],
+#             "user": str(ctx.author),
+#             "timestamp": str(datetime.now())
+#         })
+#         save_knowledge(knowledge_base)
+
 @bot.command(name='tanya', aliases=['ask', 'ai', 't'])
 async def ask_ai(ctx, *, question):
     """Tanya ke AI"""
     
+    # Quick validation
     if len(question) < 3:
         await ctx.reply("❓ Pertanyaan terlalu pendek!")
         return
     
     async with ctx.typing():
         try:
+            # Get matching data
             all_data = search_knowledge(question)
             
+            # Collect images (max 3)
             images_found = []
             if all_data:
-                for item in all_data[:8]:
+                for item in all_data[:10]:  # Only check first 10
                     if 'images' in item and item['images']:
-                        images_found.extend(item['images'][:1])
-                        if len(images_found) >= 2:
+                        images_found.extend(item['images'][:1])  # Max 1 per item
+                        if len(images_found) >= 3:
                             break
             
+            # Get AI response
             response = await get_ai_response(question, all_data)
             
+            # Create embed
             embed = discord.Embed(
                 title="🤖 Toram AI Helper",
                 description=response[:4000],
@@ -345,32 +436,27 @@ async def ask_ai(ctx, *, question):
                 timestamp=datetime.now()
             )
             
+            # Add first image only
             if images_found:
                 embed.set_image(url=images_found[0])
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar")
+                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar | {len(all_data)} data")
             else:
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name}")
+                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | {len(all_data)} data ditemukan")
             
             await ctx.reply(embed=embed, mention_author=False)
             
-            asyncio.create_task(save_conversation_async(question, response, str(ctx.author)))
+            # Save conversation (async to not block)
+            knowledge_base["conversations"].append({
+                "question": question[:200],
+                "answer": response[:300],
+                "user": str(ctx.author),
+                "timestamp": str(datetime.now())
+            })
+            save_knowledge(knowledge_base)
             
         except Exception as e:
             print(f"❌ Error in ask_ai: {str(e)}")
-            await ctx.reply("❌ Terjadi error! Coba lagi atau gunakan `!list`")
-
-async def save_conversation_async(question, response, user):
-    """Save conversation without blocking"""
-    try:
-        knowledge_base["conversations"].append({
-            "question": question[:200],
-            "answer": response[:300],
-            "user": user,
-            "timestamp": str(datetime.now())
-        })
-        save_knowledge(knowledge_base)
-    except:
-        pass
+            await ctx.reply(f"❌ Terjadi error: {str(e)[:100]}\n\nCoba lagi atau gunakan `!list`")
 
 # ============================================
 # COMMAND: TEACH
@@ -396,12 +482,14 @@ async def teach_bot(ctx, *, content):
     question = question.strip()
     answer = answer.strip()
     
+    # Deteksi gambar
     image_urls = []
     if ctx.message.attachments:
         for attachment in ctx.message.attachments:
             if attachment.content_type and attachment.content_type.startswith('image/'):
                 image_urls.append(attachment.url)
     
+    # Simpan ke database
     knowledge_base["qa_pairs"].append({
         "question": question,
         "answer": answer,
@@ -411,9 +499,11 @@ async def teach_bot(ctx, *, content):
     })
     save_knowledge(knowledge_base)
     
+    # Embed response
     embed = discord.Embed(title="✅ Berhasil Dipelajari!", color=0x57F287)
     embed.add_field(name="❓ Pertanyaan", value=question, inline=False)
     
+    # Tampilkan jawaban dengan link gambar
     if image_urls:
         answer_with_images = answer
         for i, img_url in enumerate(image_urls, 1):
@@ -499,21 +589,6 @@ async def reset_knowledge(ctx):
     save_knowledge(knowledge_base)
     await ctx.reply("🗑️ Semua data direset!")
 
-@bot.command(name='status')
-async def bot_status(ctx):
-    """Cek status bot dan uptime"""
-    uptime = datetime.now() - bot.start_time
-    hours = int(uptime.total_seconds() // 3600)
-    minutes = int((uptime.total_seconds() % 3600) // 60)
-    
-    embed = discord.Embed(title="📊 Bot Status", color=0x57F287)
-    embed.add_field(name="⏱️ Uptime", value=f"{hours}h {minutes}m", inline=True)
-    embed.add_field(name="🌐 Ping", value=f"{round(bot.latency * 1000)}ms", inline=True)
-    embed.add_field(name="💾 Database", value=f"{len(knowledge_base['qa_pairs'])} Q&A", inline=True)
-    embed.add_field(name="💓 Last Heartbeat", value=last_heartbeat.strftime('%H:%M:%S'), inline=True)
-    
-    await ctx.reply(embed=embed)
-
 # ============================================
 # HELP COMMAND
 # ============================================
@@ -541,11 +616,11 @@ async def help_command(ctx):
     
     embed.add_field(
         name="📊 Database",
-        value="`!knowledge` - Info database\n`!status` - Status bot\n`!delete <nomor>` - Hapus data\n`!reset` - Reset database (Admin)",
+        value="`!knowledge` - Info database\n`!delete <nomor>` - Hapus data\n`!reset` - Reset database (Admin)",
         inline=False
     )
     
-    embed.set_footer(text="Powered by Groq AI | Always Online")
+    embed.set_footer(text="Powered by Groq AI")
     await ctx.reply(embed=embed)
 
 @bot.command(name='testapi')
@@ -567,7 +642,7 @@ async def test_api(ctx):
             }
             
             data = {
-                "model": "llama-3.3-70b-versatile",
+                "model": "llama-3.1-70b-versatile",
                 "messages": [{"role": "user", "content": "Say: OK"}],
                 "max_tokens": 5
             }
@@ -590,15 +665,27 @@ async def test_api(ctx):
 # BOT EVENTS
 # ============================================
 
+# @bot.event
+# async def on_ready():
+#     print('='*50)
+#     print(f'✅ Bot Online: {bot.user}')
+#     print(f'📚 Knowledge: {len(knowledge_base["qa_pairs"])} Q&A')
+#     print('='*50)
+    
+#     await bot.change_presence(
+#         activity=discord.Activity(
+#             type=discord.ActivityType.playing,
+#             name="Toram Online | !help"
+#         )
+#     )
+
 @bot.event
 async def on_ready():
-    bot.start_time = datetime.now()
-    
     print('='*50)
     print(f'✅ Bot Online: {bot.user}')
     print(f'📚 Knowledge: {len(knowledge_base["qa_pairs"])} Q&A')
-    print(f'🌍 Groq API: {"✅ Configured" if GROQ_API_KEY else "❌ Missing"}')
-    print(f'⏰ Started at: {bot.start_time.strftime("%Y-%m-%d %H:%M:%S")}')
+    print(f'🌍 Groq API: {"✅ Configured" if os.environ.get("GROQ_API_KEY") else "❌ Missing"}')
+    print(f'🔑 Discord Token: {"✅ Set" if os.environ.get("DISCORD_TOKEN") else "❌ Missing"}')
     print('='*50)
     
     await bot.change_presence(
@@ -607,10 +694,6 @@ async def on_ready():
             name="Toram Online | !help"
         )
     )
-    
-    # Start background tasks
-    asyncio.create_task(auto_save_task())
-    asyncio.create_task(heartbeat_monitor())
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -620,104 +703,74 @@ async def on_command_error(ctx, error):
         await ctx.reply("❌ Kamu gak punya izin!")
     elif isinstance(error, commands.CommandNotFound):
         pass
-    else:
-        print(f"Command error: {error}")
-
-@bot.event
-async def on_disconnect():
-    print(f"⚠️ Bot disconnected at {datetime.now().strftime('%H:%M:%S')}")
-
-@bot.event
-async def on_resumed():
-    print(f"✅ Bot reconnected at {datetime.now().strftime('%H:%M:%S')}")
 
 # ============================================
-# ENHANCED KEEP ALIVE
+# KEEP ALIVE
 # ============================================
 
-from flask import Flask, jsonify
+from flask import Flask
 from threading import Thread
 import time
 
 app = Flask('')
 
-# Track bot health
-bot_health = {
-    "last_check": datetime.now(),
-    "status": "starting",
-    "uptime_seconds": 0
-}
-
 @app.route('/')
 def home():
-    return """
-    <html>
-    <head>
-        <title>Toram AI Bot</title>
-        <meta http-equiv="refresh" content="30">
-    </head>
-    <body style="font-family: monospace; padding: 20px; background: #1a1a1a; color: #00ff00;">
-        <h1>🤖 Toram AI Bot - Active</h1>
-        <p>Status: <strong style="color: #00ff00;">ONLINE</strong></p>
-        <p>Time: <strong>{}</strong></p>
-        <p>This page auto-refreshes every 30 seconds to keep bot alive</p>
-    </body>
-    </html>
-    """.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    return "🤖 Bot is running!"
 
 @app.route('/health')
 def health():
-    return jsonify({
+    return {
         "status": "online",
         "bot": str(bot.user) if bot.is_ready() else "starting...",
-        "guilds": len(bot.guilds) if bot.is_ready() else 0,
-        "latency": round(bot.latency * 1000, 2) if bot.is_ready() else 0,
-        "knowledge_base": len(knowledge_base["qa_pairs"]),
-        "timestamp": datetime.now().isoformat()
-    })
-
-@app.route('/ping')
-def ping():
-    """Simple ping endpoint for uptime monitoring"""
-    return "pong", 200
+        "guilds": len(bot.guilds) if bot.is_ready() else 0
+    }
 
 def run():
     import logging
-    log = logging.getLogger('werkzeug')
-    log.setLevel(logging.ERROR)
+    logging.getLogger('werkzeug').setLevel(logging.ERROR)
     
     port = int(os.environ.get('PORT', 8080))
+    print(f"🌐 Flask server starting on 0.0.0.0:{port}...")
     app.run(host='0.0.0.0', port=port, debug=False, threaded=True)
 
 def keep_alive():
     t = Thread(target=run, daemon=True)
     t.start()
-    print(f"✅ Keep-alive server started on port 8080")
-    print(f"🌐 Bot will stay alive via HTTP requests")
-
-# Self-ping to keep awake
-async def self_ping_task():
-    """Internal self-ping to generate activity"""
-    await bot.wait_until_ready()
-    await asyncio.sleep(30)  # Wait 30 seconds before starting
+    print("✅ Keep-alive thread started")
     
-    while not bot.is_closed():
-        try:
-            # Generate internal activity every 90 seconds
-            # This is MORE frequent than UptimeRobot (5 min)
-            await asyncio.sleep(90)
-            
-            # Make internal HTTP request to our own server
-            try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get('http://localhost:8080/ping', timeout=aiohttp.ClientTimeout(total=5)) as resp:
-                        if resp.status == 200:
-                            print(f"🔄 Self-ping OK - {datetime.now().strftime('%H:%M:%S')}")
-            except:
-                print(f"🔄 Self-ping (no HTTP) - {datetime.now().strftime('%H:%M:%S')}")
-                
-        except Exception as e:
-            print(f"⚠️ Self-ping error: {e}")
+    # Wait for Flask to start
+    time.sleep(2)
+    
+    # Print possible URLs
+    print_replit_urls()
+
+def print_replit_urls():
+    """Print all possible Replit URLs"""
+    try:
+        repl_slug = os.environ.get('REPL_SLUG', 'bot-ai-discord')
+        repl_owner = os.environ.get('REPL_OWNER', 'Tomjerry12345')
+        
+        # All possible URL formats
+        urls = [
+            f"https://{repl_slug}.{repl_owner}.repl.co",
+            f"https://{repl_slug}--{repl_owner}.repl.co",
+            f"https://{repl_slug}-{repl_owner}.repl.dev",
+            f"https://{repl_slug}.{repl_owner}.replit.dev",
+        ]
+        
+        print("\n" + "="*60)
+        print("🌐 REPLIT PUBLIC URLs - Test semua di browser!")
+        print("="*60)
+        for i, url in enumerate(urls, 1):
+            print(f"   {i}. {url}")
+        print("="*60)
+        print("💡 Copy salah satu URL di atas untuk UptimeRobot")
+        print("✅ Yang muncul '🤖 Bot is running!' adalah URL yang benar!")
+        print("="*60 + "\n")
+        
+    except Exception as e:
+        print(f"⚠️ Could not determine URL: {e}")
 
 # ============================================
 # RUN BOT
@@ -728,17 +781,14 @@ if __name__ == "__main__":
     
     if not DISCORD_TOKEN:
         print("\n❌ DISCORD_TOKEN tidak ditemukan!")
+        import sys
         sys.exit(1)
     else:
-        print("🚀 Starting bot with enhanced keep-alive...\n")
+        print("🚀 Starting bot...\n")
         try:
-            # Start self-ping task
-            asyncio.get_event_loop().create_task(self_ping_task())
             bot.run(DISCORD_TOKEN)
-        except KeyboardInterrupt:
-            print("\n👋 Bot stopped by user")
-            cleanup()
         except Exception as e:
-            print(f"\n❌ Fatal Error: {e}")
-            cleanup()
-            sys.exit(1)
+            print(f"\n❌ Error: {e}")
+            save_knowledge(knowledge_base)
+        finally:
+            os._exit(0)

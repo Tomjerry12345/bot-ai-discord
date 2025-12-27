@@ -126,10 +126,13 @@ async def heartbeat_monitor():
 # SEARCH WITH SCORING
 # ============================================
 
-def search_knowledge(query, limit=None):
-    """Search dengan scoring dan optional limit"""
+def search_knowledge(query):
+    """Search dengan scoring dan limit hasil"""
     query_lower = query.lower()
     query_words = [w for w in query_lower.split() if len(w) > 2]
+    
+    if not query_words:
+        return knowledge_base["qa_pairs"][:20]
     
     scored_results = []
     
@@ -153,19 +156,14 @@ def search_knowledge(query, limit=None):
             scored_results.append((score, qa))
     
     scored_results.sort(reverse=True, key=lambda x: x[0])
-    
-    # Kembalikan sesuai limit atau semua
-    if limit:
-        return [item[1] for item in scored_results[:limit]]
-    else:
-        return [item[1] for item in scored_results]
+    return [item[1] for item in scored_results[:20]]
 
 # ============================================
 # AI RESPONSE - OPTIMIZED
 # ============================================
 
 async def get_ai_response(question, all_data):
-    """AI response dengan pagination intelligence"""
+    """AI response dengan error handling yang lebih baik"""
     groq_api_key = GROQ_API_KEY
     
     if not groq_api_key:
@@ -180,39 +178,24 @@ async def get_ai_response(question, all_data):
             return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
         return "⚠️ API key tidak valid!"
     
-    # Deteksi pagination request
-    import re
-    pagination_match = re.search(r'(\d+)\s*-\s*(\d+)', question.lower())
-    
-    if pagination_match:
-        # User minta range tertentu, kirim LEBIH BANYAK data
-        max_items = 100  # Kirim sampai 100 item
-    else:
-        max_items = 30  # Default untuk pertanyaan biasa
-    
+    max_items = 10
     limited_data = all_data[:max_items]
     
-    # Build context - lebih ringkas untuk pagination
     context_parts = []
     total_chars = 0
-    max_context_chars = 3000 if pagination_match else 1500
+    max_context_chars = 1500
     
-    for i, item in enumerate(limited_data, 1):
-        # Format lebih ringkas untuk pagination
-        if pagination_match:
-            entry = f"{i}. {item['question']}: {item['answer'][:100]}"
-        else:
-            entry = f"Q: {item['question']}\nA: {item['answer']}"
-        
+    for item in limited_data:
+        entry = f"Q: {item['question']}\nA: {item['answer']}"
         if total_chars + len(entry) > max_context_chars:
             break
         context_parts.append(entry)
         total_chars += len(entry)
     
-    context_text = "\n".join(context_parts) if context_parts else "Tidak ada data relevan"
+    context_text = "\n\n".join(context_parts) if context_parts else "Tidak ada data relevan"
     
     try:
-        timeout = aiohttp.ClientTimeout(total=30)
+        timeout = aiohttp.ClientTimeout(total=25)
         
         async with aiohttp.ClientSession(timeout=timeout) as session:
             headers = {
@@ -220,35 +203,25 @@ async def get_ai_response(question, all_data):
                 "Content-Type": "application/json"
             }
             
-            # System prompt yang lebih pintar untuk pagination
-            system_prompt = """Kamu AI helper Toram Online yang pintar menangani list panjang.
-
-RULES:
-1. Jika user minta "list semua X" atau "tampilkan semua X" → tampilkan SEMUA data yang ada dalam format list
-2. Jika user minta range (contoh: "31-60", "nomor 10-20") → tampilkan data sesuai range itu saja
-3. Jika total data > 30, SELALU bilang: "Ditemukan X data. Untuk melihat lebih: tanya 'tampilkan X nomor 31-60'"
-4. Format list: gunakan numbering (1., 2., 3.)
-5. Jawab maksimal 800 kata untuk list panjang."""
-
             data = {
                 "model": "llama-3.3-70b-versatile",
                 "messages": [
                     {
                         "role": "system",
-                        "content": system_prompt
+                        "content": "Kamu AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata."
                     },
                     {
                         "role": "user", 
-                        "content": f"""DATABASE ({len(limited_data)} data):
+                        "content": f"""DATABASE:
 {context_text}
 
 PERTANYAAN: {question}
 
-Jawab berdasarkan database. Jika ada banyak data, tampilkan semuanya dalam format list."""
+Jawab berdasarkan database di atas. Jika tidak ada info, bilang tidak tahu."""
                     }
                 ],
                 "temperature": 0.2,
-                "max_tokens": 1500,  # Lebih besar untuk list panjang
+                "max_tokens": 500,
                 "top_p": 0.9
             }
             
@@ -261,12 +234,7 @@ Jawab berdasarkan database. Jika ada banyak data, tampilkan semuanya dalam forma
                 if resp.status == 200:
                     result = await resp.json()
                     answer = result['choices'][0]['message']['content']
-                    
-                    # Tambahkan info total jika banyak data
-                    if len(all_data) > max_items:
-                        answer += f"\n\n💡 **Total ada {len(all_data)} data.** Untuk melihat lebih banyak, tanya: `tampilkan xtall nomor {max_items+1}-{min(max_items+30, len(all_data))}`"
-                    
-                    return answer[:4000] if len(answer) > 4000 else answer
+                    return answer[:1500] if len(answer) > 1500 else answer
                     
                 elif resp.status == 401:
                     if limited_data:
@@ -358,8 +326,7 @@ async def ask_ai(ctx, *, question):
     
     async with ctx.typing():
         try:
-            # PENTING: Hilangkan limit di search
-            all_data = search_knowledge(question, limit=None)
+            all_data = search_knowledge(question)
             
             images_found = []
             if all_data:
@@ -380,9 +347,9 @@ async def ask_ai(ctx, *, question):
             
             if images_found:
                 embed.set_image(url=images_found[0])
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar | Total: {len(all_data)} data")
+                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar")
             else:
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | Total: {len(all_data)} data ditemukan")
+                embed.set_footer(text=f"Ditanya oleh {ctx.author.name}")
             
             await ctx.reply(embed=embed, mention_author=False)
             

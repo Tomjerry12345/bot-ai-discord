@@ -1070,6 +1070,13 @@
       "images": [],
       "taught_by": "ayanokoji_kyo055",
       "timestamp": "2025-12-27 11:49:28.790720"
+    },
+    {
+      "question": "build bowgun dagger",
+      "answer": "!teach build bowgun dagger |\n\n**BUILD BOWGUN + DAGGER TORAM**\n\n**STAT **: dex > str\n\n**SENJATA UTAMA**\nBowgun Dirgahayu ke-10 V1 + S\nXtall: **Fubbit, Bakuzan**\nStats: *Unsur, DTE, ATK, CD* | *ATK, DEX, CD, CD%* | *ATK, DEX, CD, CR*\n\n**SUB SENJATA**\nDagger bebas sesuai kebutuhan\n\n**ARMOR**\nBaju Pengelana\nXtall: **Altadar** | **Wiltileaf, Bemoz**\nStats: *DTE, CD, CD%, CR* | *DTE, DEX, CD, CR* | *ATK, CD, CD%, CR* | *DEX, CD, CD%, CR*\n\n**ADDITIONAL**\nManusia Kue Jahe Berkedip\nXtall: **Lefina Jahat, Jibril**\n\n**SPECIAL**\nAzimat Pombek Jalanan\nXtall: **Wiltileaf, Dewa Mesin Maple**\n\n**SKILL**: https://venenako.info/skill_simulator.php?code=4eff55aff28ae007fc796b2527d3d8d0fa330ca34113e42065\n\n**COMBO**: https://venenako.info/combo_simulator.php?code=06c8f7bc8b02a525",
+      "images": [],
+      "taught_by": "ayanokoji_kyo055",
+      "timestamp": "2025-12-29 01:51:41.346098"
     }
   ],
   "documents": [],
@@ -1307,6 +1314,18 @@
       "answer": "Berikut daftar xtall normal yang tercatat dalam database:\n\n1. **Gurita Raksasa**\n2. **Gravicep**\n3. **Shawle**\n4. **Carbuncle**\n5. **Lynx Mithurna**\n6. **Yashiro Azuki**\n\nJika ada xtall normal lain yang tidak tercatat, saya tidak tahu.",
       "user": "ayanokoji_kyo055",
       "timestamp": "2025-12-27 12:03:00.899570"
+    },
+    {
+      "question": "full build bowgun",
+      "answer": "Tidak tahu, karena database hanya menyediakan informasi tentang build BS Vit Knuckle, tidak ada informasi tentang build Bowgun.",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-29 01:51:10.607495"
+    },
+    {
+      "question": "build bowgun",
+      "answer": "**BUILD BOWGUN + DAGGER TORAM**\n\n**STAT**: dex > str\n\n**SENJATA UTAMA**\nBowgun Dirgahayu ke-10 V1 + S\nXtall: **Fubbit, Bakuzan**\nStats: *Unsur, DTE, ATK, CD* | *ATK, DEX, CD, CD%* | *ATK, DEX, CD, CR*\n\n**SUB SENJATA**\nDagger bebas sesuai kebutuhan\n\n**ARMOR**\nBaju Pengelana\nXtall: **Altadar** | **Wil",
+      "user": "ayanokoji_kyo055",
+      "timestamp": "2025-12-29 01:51:49.878670"
     }
   ]
 }

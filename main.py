@@ -111,7 +111,6 @@ async def heartbeat_monitor():
     
     while not bot.is_closed():
         try:
-            # Check if bot is still responsive
             await bot.wait_for('ready', timeout=60)
             last_heartbeat = datetime.now()
             print(f"💓 Heartbeat OK - {last_heartbeat.strftime('%H:%M:%S')}")
@@ -120,14 +119,14 @@ async def heartbeat_monitor():
         except Exception as e:
             print(f"❌ Heartbeat error: {e}")
         
-        await asyncio.sleep(180)  # Check every 3 minutes
+        await asyncio.sleep(180)
 
 # ============================================
-# SEARCH WITH SCORING
+# SEARCH WITH SCORING - IMPROVED
 # ============================================
 
 def search_knowledge(query, limit=None):
-    """Search dengan scoring dan optional limit"""
+    """Search dengan scoring yang lebih baik"""
     query_lower = query.lower()
     query_words = [w for w in query_lower.split() if len(w) > 2]
     
@@ -138,76 +137,82 @@ def search_knowledge(query, limit=None):
         answer_lower = qa["answer"].lower()
         
         score = 0
-        if query_lower in question_lower:
-            score += 10
-        if query_lower in answer_lower:
-            score += 5
+        
+        # Exact match dapat skor tertinggi
+        if query_lower == question_lower:
+            score += 100
+        # Query ada di pertanyaan
+        elif query_lower in question_lower:
+            score += 50
+        # Query ada di jawaban
+        elif query_lower in answer_lower:
+            score += 20
             
+        # Word matching
         for word in query_words:
             if word in question_lower:
-                score += 3
+                score += 5
             if word in answer_lower:
-                score += 1
+                score += 2
         
         if score > 0:
             scored_results.append((score, qa))
     
+    # Sort by score descending
     scored_results.sort(reverse=True, key=lambda x: x[0])
     
-    # Kembalikan sesuai limit atau semua
+    # Return with limit or all
     if limit:
         return [item[1] for item in scored_results[:limit]]
     else:
         return [item[1] for item in scored_results]
 
 # ============================================
-# AI RESPONSE - OPTIMIZED
+# AI RESPONSE - FOKUS & PRESISI
 # ============================================
 
 async def get_ai_response(question, all_data):
-    """AI response dengan pagination intelligence"""
+    """AI response yang lebih fokus pada pertanyaan"""
     groq_api_key = GROQ_API_KEY
     
     if not groq_api_key:
         if all_data:
-            return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+            return f"🤖 {all_data[0]['answer']}"
         return "⚠️ GROQ_API_KEY belum diset!"
     
     groq_api_key = groq_api_key.strip().replace('\n', '').replace('\r', '')
     
     if len(groq_api_key) < 40:
         if all_data:
-            return f"🤖 Dari database:\n\n{all_data[0]['answer']}"
+            return f"🤖 {all_data[0]['answer']}"
         return "⚠️ API key tidak valid!"
     
-    # Deteksi pagination request
+    # Deteksi jenis pertanyaan
     import re
+    is_list_request = any(keyword in question.lower() for keyword in ['list', 'semua', 'tampilkan semua', 'daftar'])
     pagination_match = re.search(r'(\d+)\s*-\s*(\d+)', question.lower())
     
+    # Tentukan jumlah data yang dikirim
     if pagination_match:
-        # User minta range tertentu, kirim LEBIH BANYAK data
-        max_items = 100  # Kirim sampai 100 item
+        max_items = 100  # Untuk pagination
+    elif is_list_request:
+        max_items = 50   # Untuk list request
     else:
-        max_items = 30  # Default untuk pertanyaan biasa
+        max_items = 5    # Untuk pertanyaan biasa (DIKURANGI dari 30 ke 5)
     
     limited_data = all_data[:max_items]
     
-    # Build context - lebih ringkas untuk pagination
+    # Build context - lebih ringkas
     context_parts = []
-    total_chars = 0
-    max_context_chars = 3000 if pagination_match else 1500
-    
     for i, item in enumerate(limited_data, 1):
-        # Format lebih ringkas untuk pagination
-        if pagination_match:
-            entry = f"{i}. {item['question']}: {item['answer'][:100]}"
+        if is_list_request or pagination_match:
+            # Format list
+            entry = f"{i}. {item['question']}: {item['answer'][:80]}"
         else:
+            # Format fokus untuk jawaban langsung
             entry = f"Q: {item['question']}\nA: {item['answer']}"
         
-        if total_chars + len(entry) > max_context_chars:
-            break
         context_parts.append(entry)
-        total_chars += len(entry)
     
     context_text = "\n".join(context_parts) if context_parts else "Tidak ada data relevan"
     
@@ -220,15 +225,26 @@ async def get_ai_response(question, all_data):
                 "Content-Type": "application/json"
             }
             
-            # System prompt yang lebih pintar untuk pagination
-            system_prompt = """Kamu AI helper Toram Online yang pintar menangani list panjang.
+            # System prompt yang lebih tegas
+            system_prompt = """Kamu adalah AI helper Toram Online yang menjawab LANGSUNG dan FOKUS.
 
-RULES:
-1. Jika user minta "list semua X" atau "tampilkan semua X" → tampilkan SEMUA data yang ada dalam format list
-2. Jika user minta range (contoh: "31-60", "nomor 10-20") → tampilkan data sesuai range itu saja
-3. Jika total data > 30, SELALU bilang: "Ditemukan X data. Untuk melihat lebih: tanya 'tampilkan X nomor 31-60'"
-4. Format list: gunakan numbering (1., 2., 3.)
-5. Jawab maksimal 800 kata untuk list panjang."""
+ATURAN KETAT:
+1. Jawab HANYA yang ditanya, jangan tambah informasi ekstra
+2. Jika user tanya satu hal spesifik (contoh: "kode buff maxmp") → jawab HANYA kode itu saja
+3. Jika user minta "list semua X" → tampilkan semua dalam format list
+4. Jika user minta range (31-60) → tampilkan data range itu saja
+5. JANGAN pernah jawab dengan "berdasarkan database..." atau penjelasan panjang kecuali diminta
+6. Jawab maksimal 3 kalimat untuk pertanyaan spesifik
+7. Gunakan format list hanya jika user minta list/semua/daftar
+
+Contoh BENAR:
+User: "kode buff maxmp"
+Bot: "3017676"
+
+Contoh SALAH:
+User: "kode buff maxmp"  
+Bot: "Berdasarkan database, kode buff MaxMP adalah 3017676. Buff ini berguna untuk..."
+"""
 
             data = {
                 "model": "llama-3.3-70b-versatile",
@@ -239,17 +255,17 @@ RULES:
                     },
                     {
                         "role": "user", 
-                        "content": f"""DATABASE ({len(limited_data)} data):
+                        "content": f"""DATABASE:
 {context_text}
 
 PERTANYAAN: {question}
 
-Jawab berdasarkan database. Jika ada banyak data, tampilkan semuanya dalam format list."""
+Jawab LANGSUNG dan SINGKAT sesuai pertanyaan. Jangan tambah penjelasan ekstra."""
                     }
                 ],
-                "temperature": 0.2,
-                "max_tokens": 1500,  # Lebih besar untuk list panjang
-                "top_p": 0.9
+                "temperature": 0.1,  # Lebih rendah untuk jawaban lebih konsisten
+                "max_tokens": 800 if (is_list_request or pagination_match) else 300,
+                "top_p": 0.8
             }
             
             async with session.post(
@@ -260,38 +276,38 @@ Jawab berdasarkan database. Jika ada banyak data, tampilkan semuanya dalam forma
                 
                 if resp.status == 200:
                     result = await resp.json()
-                    answer = result['choices'][0]['message']['content']
+                    answer = result['choices'][0]['message']['content'].strip()
                     
-                    # Tambahkan info total jika banyak data
-                    if len(all_data) > max_items:
-                        answer += f"\n\n💡 **Total ada {len(all_data)} data.** Untuk melihat lebih banyak, tanya: `tampilkan xtall nomor {max_items+1}-{min(max_items+30, len(all_data))}`"
+                    # Tambahkan info pagination hanya jika memang list request
+                    if (is_list_request or pagination_match) and len(all_data) > max_items:
+                        answer += f"\n\n💡 Total: {len(all_data)} data. Untuk lanjut: `!tanya tampilkan nomor {max_items+1}-{min(max_items+30, len(all_data))}`"
                     
-                    return answer[:4000] if len(answer) > 4000 else answer
+                    return answer[:4000]
                     
                 elif resp.status == 401:
                     if limited_data:
-                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_🔑 API key bermasalah_"
+                        return limited_data[0]['answer']
                     return "🔑 API key tidak valid!"
                     
                 elif resp.status == 429:
                     if limited_data:
-                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⚠️ API rate limit_"
+                        return limited_data[0]['answer']
                     return "⚠️ API rate limit!"
                     
                 else:
                     if limited_data:
-                        return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}"
+                        return limited_data[0]['answer']
                     return f"❌ API Error ({resp.status})"
                     
     except asyncio.TimeoutError:
         if limited_data:
-            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}\n\n_⏱️ Koneksi lambat_"
+            return limited_data[0]['answer']
         return "⏱️ Timeout! Coba lagi."
         
     except Exception as e:
         print(f"❌ AI Error: {str(e)[:200]}")
         if limited_data:
-            return f"🤖 **Dari database:**\n\n{limited_data[0]['answer']}"
+            return limited_data[0]['answer']
         return "❌ Error, coba lagi!"
 
 # ============================================
@@ -352,45 +368,47 @@ async def import_txt(ctx, filename: str = "data_qa.txt"):
 async def ask_ai(ctx, *, question):
     """Tanya ke AI"""
     
-    if len(question) < 3:
+    if len(question) < 2:
         await ctx.reply("❓ Pertanyaan terlalu pendek!")
         return
     
     async with ctx.typing():
         try:
-            # PENTING: Hilangkan limit di search
+            # Search tanpa limit
             all_data = search_knowledge(question, limit=None)
             
+            # Cari gambar dari top results
             images_found = []
             if all_data:
-                for item in all_data[:8]:
+                for item in all_data[:5]:
                     if 'images' in item and item['images']:
                         images_found.extend(item['images'][:1])
                         if len(images_found) >= 2:
                             break
             
+            # Get AI response
             response = await get_ai_response(question, all_data)
             
+            # Buat embed sederhana
             embed = discord.Embed(
-                title="🤖 Toram AI Helper",
-                description=response[:4000],
+                description=response,
                 color=0x5865F2,
                 timestamp=datetime.now()
             )
             
             if images_found:
                 embed.set_image(url=images_found[0])
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | 🖼️ {len(images_found)} gambar | Total: {len(all_data)} data")
-            else:
-                embed.set_footer(text=f"Ditanya oleh {ctx.author.name} | Total: {len(all_data)} data ditemukan")
+            
+            embed.set_footer(text=f"Ditanya oleh {ctx.author.name}")
             
             await ctx.reply(embed=embed, mention_author=False)
             
+            # Save conversation async
             asyncio.create_task(save_conversation_async(question, response, str(ctx.author)))
             
         except Exception as e:
             print(f"❌ Error in ask_ai: {str(e)}")
-            await ctx.reply("❌ Terjadi error! Coba lagi atau gunakan `!list`")
+            await ctx.reply("❌ Error! Coba lagi atau gunakan `!list`")
 
 async def save_conversation_async(question, response, user):
     """Save conversation without blocking"""
@@ -556,7 +574,7 @@ async def help_command(ctx):
     """Panduan bot"""
     embed = discord.Embed(
         title="🎮 Toram AI Bot",
-        description="Bot AI yang bisa belajar dari kamu!",
+        description="Bot AI yang menjawab langsung dan fokus!",
         color=0x5865F2
     )
     
@@ -578,7 +596,7 @@ async def help_command(ctx):
         inline=False
     )
     
-    embed.set_footer(text="Powered by Groq AI | Always Online")
+    embed.set_footer(text="Powered by Groq AI | Jawaban Langsung & Fokus")
     await ctx.reply(embed=embed)
 
 @bot.command(name='testapi')
@@ -671,16 +689,8 @@ async def on_resumed():
 
 from flask import Flask, jsonify
 from threading import Thread
-import time
 
 app = Flask('')
-
-# Track bot health
-bot_health = {
-    "last_check": datetime.now(),
-    "status": "starting",
-    "uptime_seconds": 0
-}
 
 @app.route('/')
 def home():
@@ -712,7 +722,6 @@ def health():
 
 @app.route('/ping')
 def ping():
-    """Simple ping endpoint for uptime monitoring"""
     return "pong", 200
 
 def run():
@@ -727,21 +736,15 @@ def keep_alive():
     t = Thread(target=run, daemon=True)
     t.start()
     print(f"✅ Keep-alive server started on port 8080")
-    print(f"🌐 Bot will stay alive via HTTP requests")
 
-# Self-ping to keep awake
 async def self_ping_task():
-    """Internal self-ping to generate activity"""
+    """Internal self-ping"""
     await bot.wait_until_ready()
-    await asyncio.sleep(30)  # Wait 30 seconds before starting
+    await asyncio.sleep(30)
     
     while not bot.is_closed():
         try:
-            # Generate internal activity every 90 seconds
-            # This is MORE frequent than UptimeRobot (5 min)
             await asyncio.sleep(90)
-            
-            # Make internal HTTP request to our own server
             try:
                 async with aiohttp.ClientSession() as session:
                     async with session.get('http://localhost:8080/ping', timeout=aiohttp.ClientTimeout(total=5)) as resp:
@@ -749,7 +752,6 @@ async def self_ping_task():
                             print(f"🔄 Self-ping OK - {datetime.now().strftime('%H:%M:%S')}")
             except:
                 print(f"🔄 Self-ping (no HTTP) - {datetime.now().strftime('%H:%M:%S')}")
-                
         except Exception as e:
             print(f"⚠️ Self-ping error: {e}")
 
@@ -764,7 +766,7 @@ if __name__ == "__main__":
         print("\n❌ DISCORD_TOKEN tidak ditemukan!")
         sys.exit(1)
     else:
-        print("🚀 Starting bot with enhanced keep-alive...\n")
+        print("🚀 Starting bot...\n")
         try:
             bot.run(DISCORD_TOKEN)
         except KeyboardInterrupt:
